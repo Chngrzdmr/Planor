@@ -60,10 +60,10 @@ namespace Planor
             this.guna2Panel1.Controls.Add(this.g2LoginButon);
             this.guna2Panel1.Controls.Add(this.label1);
             this.guna2Panel1.Controls.Add(this.txt_ka);
-            this.guna2Panel1.Location = new System.Drawing.Point(147, 114);
+            this.guna2Panel1.Location = new System.Drawing.Point(147, 120);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.ShadowDecoration.Parent = this.guna2Panel1;
-            this.guna2Panel1.Size = new System.Drawing.Size(261, 219);
+            this.guna2Panel1.Size = new System.Drawing.Size(261, 213);
             this.guna2Panel1.TabIndex = 2;
             // 
             // txt_sifre
