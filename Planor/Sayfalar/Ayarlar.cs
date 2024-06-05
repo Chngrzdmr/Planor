@@ -1,54 +1,54 @@
-using Planor.Kalaslar;
-using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Drawing;
-using System.Windows.Forms;
+using Planor.Kalaslar; // Namespace for custom classes
+using MySql.Data.MySqlClient; // Namespace for MySQL database connection
+using System; // Namespace for basic system functionality
+using System.Collections.Generic; // Namespace for generic collections
+using System.Configuration; // Namespace for configuration management
+using System.Drawing; // Namespace for graphics functionality
+using System.Windows.Forms; // Namespace for Windows Forms functionality
 
-namespace Planor.Sayfalar
+namespace Planor.Sayfalar // Namespace for the forms and controls
 {
-    public partial class Ayarlar : UserControl
+    public partial class Ayarlar : UserControl // Ayarlar UserControl
     {
-        General gn = new General();
+        General gn = new General(); // Create an instance of the General class
+
+        // Constants for connection string, SQL queries, and form size
         private const string CONNECTION_STRING = "YourConnectionString";
         private const string SELECT_QUERY = @"Select * from t_kullanicilar where id = @id";
         private const string UPDATE_QUERY = "UPDATE t_kullanicilar SET {0} WHERE id = @id";
         private const string INSERT_QUERY = "INSERT INTO t_kullanici_sifre (KullaniciID, SonDegistirmeTarihi) VALUES (@id, @tarih)";
         private const string DELETE_QUERY = "DELETE FROM t_kullanici_sifre WHERE KullaniciID = @id";
 
+        // Ayarlar UserControl constructor
         public Ayarlar()
         {
             InitializeComponent();
-            SizeChanged += Ayarlar_SizeChanged; // Add event handler for SizeChanged event
+
+            // Add event handler for SizeChanged event
+            SizeChanged += Ayarlar_SizeChanged;
+
+            // Initialize UI elements and load settings
             TramerSifresiDegistirBTN.Enabled = false;
             TramerGetir();
             ID_Label.Text = GetIDFromParentForm();
             SetFormSize();
         }
 
+        // Get the ID from the parent form
         private string GetIDFromParentForm()
         {
             SistemForm fc = (SistemForm)Application.OpenForms["SistemForm"];
             return fc.lbl_id.Text;
         }
 
-        private void Ayarlar_SizeChanged(object sender, EventArgs e)
-        {
-            SetFormSize();
-        }
-
+        // Set the form size based on the screen size
         private void SetFormSize()
         {
             this.Width = new SistemForm().screens[new SistemForm().ekranno].WorkingArea.Width - ((new SistemForm().screens[new SistemForm().ekranno].WorkingArea.Width) / 8);
             this.Height = new SistemForm().PanelSlider.Height;
         }
 
-        private void Ayarlar_Load(object sender, EventArgs e)
-        {
-            LoadSettings();
-        }
-
+        // Load settings from the configuration file
         private void LoadSettings()
         {
             ayar1.Checked = ConfigurationManager.AppSettings.Get("AyniPencere") == "1";
@@ -56,10 +56,12 @@ namespace Planor.Sayfalar
             ayar3.Checked = ConfigurationManager.AppSettings.Get("Motitor2de") == "1";
         }
 
+        // Save settings to the configuration file
         private void SaveSettings()
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
 
+            // Remove existing settings and add new ones
             config.AppSettings.Settings.Remove("AyniPencere");
             config.AppSettings.Settings.Remove("SagTuslaFarkliPencere");
             config.AppSettings.Settings.Remove("Motitor2de");
@@ -71,8 +73,10 @@ namespace Planor.Sayfalar
             config.Save(ConfigurationSaveMode.Modified);
         }
 
+        // Retrieve tramer information from the database
         private void TramerGetir()
         {
+            // Open a connection, create a command, and execute the query
             using (MySqlConnection con = new MySqlConnection(CONNECTION_STRING))
             {
                 MySqlCommand com = new MySqlCommand(SELECT_QUERY, con);
@@ -84,17 +88,20 @@ namespace Planor.Sayfalar
                     MySqlDataReader oku = com.ExecuteReader();
                     if (oku.Read())
                     {
+                        // Set the textboxes with the retrieved data
                         TxtTramerKullaniciAdi.Text = oku["tramer_ka"].ToString();
                         TxtTramerSifre.Text = oku["tramer_sifre"].ToString();
                     }
                 }
                 catch (Exception exp)
                 {
+                    // Display the error message in a message box
                     MessageBox.Show(exp.Message);
                 }
             }
         }
 
+        // Validate the password
         private bool ValidatePassword(string password)
         {
             int buyukkarakter = 0;
@@ -105,6 +112,7 @@ namespace Planor.Sayfalar
             string karaterler2 = "abcçdefgğıijklmnoöprsştuüvyzwq";
             string karaterler3 = "'!#%&/?*\\1234567890";
 
+            // Check if the password contains uppercase, lowercase, and special characters
             foreach (var item in karaterler)
             {
                 if (password.Contains(item.ToString()))
@@ -129,11 +137,14 @@ namespace Planor.Sayfalar
                 }
             }
 
+            // Return true if the password meets the requirements
             return password.Length >= 8 && buyukkarakter > 0 && kuyukkarakter > 0 && ozelkarakter > 0;
         }
 
+        // Change the program password
         private void ProgramSifresiDegistirBTN_Click(object sender, EventArgs e)
         {
+            // Validate the input
             if (string.IsNullOrEmpty(txt_mevcut_sifre.Text))
             {
                 MessageBox.Show("Lütfen Eski Şifrenizi Giriniz");
@@ -159,6 +170,7 @@ namespace Planor.Sayfalar
                 return;
             }
 
+            // Update the program password in the database
             string updateQuery = string.Format(UPDATE_QUERY, "sifre='" + txt_yeni_sifre.Text + "'");
             List<string> TabloAdlari = new List<string>();
             TabloAdlari.Add("sifre");
@@ -169,6 +181,7 @@ namespace Planor.Sayfalar
 
             if (sonuc == "islem_tamam")
             {
+                // Insert a new record in the t_kullanici_sifre table
                 List<string> TabloAdlari2 = new List<string>();
                 TabloAdlari2.Add("KullaniciID");
                 TabloAdlari2.Add("SonDegistirmeTarihi");
@@ -188,8 +201,10 @@ namespace Planor.Sayfalar
             }
         }
 
+        // Change the tramer password
         private void TramerSifresiDegistirBTN_Click(object sender, EventArgs e)
         {
+            // Validate the input
             if (txt_yeni_sifre.Text == txt_yeni_sifre_2.Text)
             {
                 List<string> TabloAdlari = new List<string>();
@@ -197,6 +212,7 @@ namespace Planor.Sayfalar
                 ArrayList veriler = new ArrayList();
                 veriler.Add(txt_yeni_sifre.Text);
 
+                // Update the tramer password in the database
                 string sonuc = gn.db_duzenle(TabloAdlari, "t_kullanicilar", veriler, "id", ID_Label.Text);
 
                 if (sonuc == "islem_tamam")
@@ -215,19 +231,23 @@ namespace Planor.Sayfalar
             }
         }
 
+        // Event handler for the CheckedChanged event of the radio buttons
         private void ayarlar_CheckedChanged(object sender, EventArgs e)
         {
             AyarKaydetBTN.Enabled = true;
         }
 
+        // Save settings to the configuration file
         private void AyarKaydetBTN_Click(object sender, EventArgs e)
         {
             SaveSettings();
             AyarKaydetBTN.Enabled = false;
         }
 
+        // Event handler for the TextChanged event of the tramer username textbox
         private void TxtTramerKullaniciAdi_TextChanged(object sender, EventArgs e)
         {
+            // Enable the TramerSifresiDegistirBTN if all input fields are filled
             TramerSifresiDegistirBTN.Enabled = TxtTramerKullaniciAdi.Text.Length > 0 &&
                                                TxtTramerSifre.Text.Length > 0 &&
                                                txt_yeni_sifre_t.Text.Length > 0 &&
