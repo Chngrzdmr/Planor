@@ -1,267 +1,365 @@
+using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
+using Guna.UI2.WinForms;
+
 namespace Planor
 {
     partial class LoginForm
     {
-        private System.ComponentModel.IContainer components = null;
+        #region Private Fields
 
-        protected override void Dispose(bool disposing)
+        private IContainer components;
+        private Guna2Panel panelContainer;
+        private Guna2TextBox txtUsername;
+        private Guna2GradientButton btnLogin;
+        private Label lblPassword;
+        private Guna2TextBox txtPassword;
+        private Guna2Elipse elipseForm;
+        private Guna2DragControl dragControl;
+        private Guna2AnimateWindow animateWindow;
+        private Guna2ControlBox controlBox;
+        private Guna2HtmlLabel htmlLabelVersion;
+        private Label lblVersion;
+        private Label lblIP;
+        private Label lblVRSYN;
+        private Label lblSubeID;
+        private Label lblTur;
+        private Label lblTramerka;
+        private Label lblTramerSifre;
+        private Guna2PictureBox pictureBoxBackground;
+
+        #endregion
+
+        #region Constructors
+
+        public LoginForm()
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
+            InitializeComponent();
         }
+
+        #endregion
+
+        #region Private Methods
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.txt_sifre = new Guna.UI2.WinForms.Guna2TextBox();
-            this.g2LoginButon = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txt_ka = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
-            this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
-            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.LBL_IP = new System.Windows.Forms.Label();
-            this.LBL_VRSYN = new System.Windows.Forms.Label();
-            this.lblsube_id = new System.Windows.Forms.Label();
-            this.lbltur = new System.Windows.Forms.Label();
-            this.lbltramerka = new System.Windows.Forms.Label();
-            this.lbltramersifre = new System.Windows.Forms.Label();
-            this.g2LoginImage = new Guna.UI2.WinForms.Guna2PictureBox();
+            components = new Container();
+            panelContainer = new Guna2Panel();
+            txtUsername = new Guna2TextBox();
+            btnLogin = new Guna2GradientButton();
+            lblPassword = new Label();
+            txtPassword = new Guna2TextBox();
+            elipseForm = new Guna2Elipse(components);
+            dragControl = new Guna2DragControl(components);
+            animateWindow = new Guna2AnimateWindow(components);
+            controlBox = new Guna2ControlBox();
+            htmlLabelVersion = new Guna2HtmlLabel();
+            lblVersion = new Label();
+            lblIP = new Label();
+            lblVRSYN = new Label();
+            lblSubeID = new Label();
+            lblTur = new Label();
+            lblTramerka = new Label();
+            lblTramerSifre = new Label();
+            pictureBoxBackground = new Guna2PictureBox();
 
-            // guna2Panel1
-            this.guna2Panel1.Controls.Add(this.txt_sifre);
-            this.guna2Panel1.Controls.Add(this.g2LoginButon);
-            this.guna2Panel1.Controls.Add(this.label1);
-            this.guna2Panel1.Controls.Add(this.txt_ka);
-            this.guna2Panel1.Location = new System.Drawing.Point(147, 120);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.ShadowDecoration.Parent = this.guna2Panel1;
-            this.guna2Panel1.Size = new System.Drawing.Size(261, 213);
+            //
+            // panelContainer
+            //
+            panelContainer.Controls.Add(txtUsername);
+            panelContainer.Controls.Add(btnLogin);
+            panelContainer.Controls.Add(lblPassword);
+            panelContainer.Controls.Add(txtPassword);
+            panelContainer.Location = new Point(147, 120);
+            panelContainer.Name = "panelContainer";
+            panelContainer.ShadowDecoration.Parent = panelContainer;
+            panelContainer.Size = new Size(261, 213);
 
-            // txt_sifre
-            this.txt_sifre.AutoRoundedCorners = true;
-            this.txt_sifre.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.txt_sifre.BorderRadius = 18;
-            this.txt_sifre.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_sifre.DefaultText = "";
-            this.txt_sifre.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_sifre.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_sifre.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_sifre.DisabledState.Parent = this.txt_sifre;
-            this.txt_sifre.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_sifre.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.txt_sifre.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(254)))));
-            this.txt_sifre.FocusedState.Parent = this.txt_sifre;
-            this.txt_sifre.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txt_sifre.ForeColor = System.Drawing.Color.Black;
-            this.txt_sifre.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(254)))));
-            this.txt_sifre.HoverState.Parent = this.txt_sifre;
-            this.txt_sifre.IconLeft = global::Planor.Properties.Resources.Lock;
-            this.txt_sifre.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txt_sifre.Location = new System.Drawing.Point(4, 106);
-            this.txt_sifre.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_sifre.Name = "txt_sifre";
-            this.txt_sifre.PasswordChar = '*';
-            this.txt_sifre.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txt_sifre.PlaceholderText = "Şifre";
-            this.txt_sifre.SelectedText = "";
-            this.txt_sifre.ShadowDecoration.Parent = this.txt_sifre;
-            this.txt_sifre.Size = new System.Drawing.Size(253, 38);
-            this.txt_sifre.TabIndex = 2;
+            //
+            // txtUsername
+            //
+            txtUsername.AutoRoundedCorners = true;
+            txtUsername.AutoValidate = AutoValidate.EnableAllowFocusChange;
+            txtUsername.BorderRadius = 18;
+            txtUsername.Cursor = Cursors.IBeam;
+            txtUsername.DefaultText = "";
+            txtUsername.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtUsername.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtUsername.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtUsername.DisabledState.Parent = txtUsername;
+            txtUsername.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtUsername.FillColor = Color.FromArgb(229, 229, 229);
+            txtUsername.FocusedState.BorderColor = Color.FromArgb(94, 148, 254);
+            txtUsername.FocusedState.Parent = txtUsername;
+            txtUsername.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            txtUsername.ForeColor = Color.Black;
+            txtUsername.HoverState.BorderColor = Color.FromArgb(94, 148, 254);
+            txtUsername.HoverState.Parent = txtUsername;
+            txtUsername.IconLeft = Properties.Resources.Lock;
+            txtUsername.IconLeftSize = new Size(30, 30);
+            txtUsername.Location = new Point(4, 106);
+            txtUsername.Margin = new Padding(4);
+            txtUsername.Name = "txtUsername";
+            txtUsername.PasswordChar = '*';
+            txtUsername.PlaceholderForeColor = Color.FromArgb(64, 64, 64);
+            txtUsername.PlaceholderText = "Kullanıcı Adı";
+            txtUsername.SelectedText = "";
+            txtUsername.ShadowDecoration.Parent = txtUsername;
+            txtUsername.Size = new Size(253, 38);
+            txtUsername.TabIndex = 2;
 
-            // g2LoginButon
-            this.g2LoginButon.AutoRoundedCorners = true;
-            this.g2LoginButon.BackColor = System.Drawing.Color.Transparent;
-            this.g2LoginButon.BorderRadius = 21;
-            this.g2LoginButon.CheckedState.Parent = this.g2LoginButon;
-            this.g2LoginButon.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.g2LoginButon.CustomImages.Parent = this.g2LoginButon;
-            this.g2LoginButon.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(172)))), ((int)(((byte)(228)))));
-            this.g2LoginButon.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(35)))), ((int)(((byte)(132)))));
-            this.g2LoginButon.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.g2LoginButon.ForeColor = System.Drawing.Color.White;
-            this.g2LoginButon.HoverState.BorderColor = System.Drawing.Color.Black;
-            this.g2LoginButon.HoverState.CustomBorderColor = System.Drawing.Color.Black;
-            this.g2LoginButon.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(35)))), ((int)(((byte)(132)))));
-            this.g2LoginButon.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(172)))), ((int)(((byte)(228)))));
-            this.g2LoginButon.HoverState.Parent = this.g2LoginButon;
-            this.g2LoginButon.Location = new System.Drawing.Point(5, 161);
-            this.g2LoginButon.Name = "g2LoginButon";
-            this.g2LoginButon.ShadowDecoration.Depth = 20;
-            this.g2LoginButon.ShadowDecoration.Parent = this.g2LoginButon;
-            this.g2LoginButon.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.g2LoginButon.Size = new System.Drawing.Size(253, 45);
-            this.g2LoginButon.TabIndex = 3;
-            this.g2LoginButon.Text = "GİRİŞ YAP";
-            this.g2LoginButon.Click += new System.EventHandler(this.g2LoginButon_Click);
-            this.g2LoginButon.Enter += new System.EventHandler(this.g2LoginButon_Enter);
-            this.g2LoginButon.Leave += new System.EventHandler(this.g2LoginButon_Leave);
-            this.g2LoginButon.MouseLeave += new System.EventHandler(this.g2LoginButon_MouseLeave);
+            //
+            // btnLogin
+            //
+            btnLogin.AutoRoundedCorners = true;
+            btnLogin.BackColor = Color.Transparent;
+            btnLogin.BorderRadius = 21;
+            btnLogin.CheckedState.Parent = btnLogin;
+            btnLogin.Cursor = Cursors.Hand;
+            btnLogin.CustomImages.Parent = btnLogin;
+            btnLogin.FillColor = Color.FromArgb(90, 172, 228);
+            btnLogin.FillColor2 = Color.FromArgb(25, 35, 132);
+            btnLogin.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            btnLogin.ForeColor = Color.White;
+            btnLogin.HoverState.BorderColor = Color.Black;
+            btnLogin.HoverState.CustomBorderColor = Color.Black;
+            btnLogin.HoverState.FillColor = Color.FromArgb(25, 35, 132);
+            btnLogin.HoverState.FillColor2 = Color.FromArgb(90, 172, 228);
+            btnLogin.HoverState.Parent = btnLogin;
+            btnLogin.Location = new Point(5, 161);
+            btnLogin.Name = "btnLogin";
+            btnLogin.ShadowDecoration.Depth = 20;
+            btnLogin.ShadowDecoration.Parent = btnLogin;
+            btnLogin.ShadowDecoration.Shadow = new Padding(0, 0, 0, 3);
+            btnLogin.Size = new Size(253, 45);
+            btnLogin.TabIndex = 3;
+            btnLogin.Text = "GİRİŞ YAP";
+            btnLogin.Click += btnLogin_Click;
+            btnLogin.Enter += btnLogin_Enter;
+            btnLogin.Leave += btnLogin_Leave;
+            btnLogin.MouseLeave += btnLogin_MouseLeave;
 
-            // label1
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(48, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 30);
+            //
+            // lblPassword
+            //
+            lblPassword.AutoSize = true;
+            lblPassword.BackColor = Color.Transparent;
+            lblPassword.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            lblPassword.Location = new Point(48, 9);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(138, 30);
 
-            // txt_ka
-            this.txt_ka.AutoRoundedCorners = true;
-            this.txt_ka.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.txt_ka.BorderRadius = 18;
-            this.txt_ka.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_ka.DefaultText = "";
-            this.txt_ka.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_ka.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_ka.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_ka.DisabledState.Parent = this.txt_ka;
-            this.txt_ka.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_ka.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.txt_ka.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_ka.FocusedState.Parent = this.txt_ka;
-            this.txt_ka.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txt_ka.ForeColor = System.Drawing.Color.Black;
-            this.txt_ka.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_ka.HoverState.Parent = this.txt_ka;
-            this.txt_ka.IconLeft = ((System.Drawing.Image)(resources.GetObject("txt_ka.IconLeft")));
-            this.txt_ka.IconLeftSize = new System.Drawing.Size(30, 30);
-            this.txt_ka.Location = new System.Drawing.Point(4, 52);
-            this.txt_ka.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_ka.Name = "txt_ka";
-            this.txt_ka.PasswordChar = '\0';
-            this.txt_ka.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txt_ka.PlaceholderText = "Kullanıcı Adı";
-            this.txt_ka.SelectedText = "";
-            this.txt_ka.ShadowDecoration.Parent = this.txt_ka;
-            this.txt_ka.Size = new System.Drawing.Size(253, 38);
-            this.txt_ka.TabIndex = 1;
-            this.txt_ka.TextChanged += new System.EventHandler(this.txt_ka_TextChanged);
+            //
+            // txtPassword
+            //
+            txtPassword.AutoRoundedCorners = true;
+            txtPassword.AutoValidate = AutoValidate.EnableAllowFocusChange;
+            txtPassword.BorderRadius = 18;
+            txtPassword.Cursor = Cursors.IBeam;
+            txtPassword.DefaultText = "";
+            txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtPassword.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtPassword.DisabledState.Parent = txtPassword;
+            txtPassword.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtPassword.FillColor = Color.FromArgb(229, 229, 229);
+            txtPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPassword.FocusedState.Parent = txtPassword;
+            txtPassword.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            txtPassword.ForeColor = Color.Black;
+            txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPassword.HoverState.Parent = txtPassword;
+            txtPassword.IconLeft = Properties.Resources.Lock;
+            txtPassword.IconLeftSize = new Size(30, 30);
+            txtPassword.Location = new Point(4, 52);
+            txtPassword.Margin = new Padding(4);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.PlaceholderForeColor = Color.FromArgb(64, 64, 64);
+            txtPassword.PlaceholderText = "Şifre";
+            txtPassword.SelectedText = "";
+            txtPassword.ShadowDecoration.Parent = txtPassword;
+            txtPassword.Size = new Size(253, 38);
+            txtPassword.TabIndex = 1;
 
-            // guna2Elipse1
-            this.guna2Elipse1.TargetControl = this;
+            //
+            // elipseForm
+            //
+            elipseForm.TargetControl = this;
 
-            // guna2DragControl1
-            this.guna2DragControl1.TargetControl = this;
+            //
+            // dragControl
+            //
+            dragControl.TargetControl = this;
 
-            // guna2AnimateWindow1
-            this.guna2AnimateWindow1.AnimationType = Guna.UI2.WinForms.Guna2AnimateWindow.AnimateWindowType.AW_SLIDE;
+            //
+            // animateWindow
+            //
+            animateWindow.AnimationType = Guna2AnimateWindow.AnimateWindowType.AW_SLIDE;
 
-            // guna2ControlBox1
-            this.guna2ControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2ControlBox1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2ControlBox1.HoverState.Parent = this.guna2ControlBox1;
-            this.guna2ControlBox1.IconColor = System.Drawing.Color.Navy;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(383, 0);
-            this.guna2ControlBox1.Name = "guna2ControlBox1";
-            this.guna2ControlBox1.ShadowDecoration.Parent = this.guna2ControlBox1;
-            this.guna2ControlBox1.Size = new System.Drawing.Size(30, 29);
-            this.guna2ControlBox1.TabIndex = 3;
+            //
+            // controlBox
+            //
+            controlBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            controlBox.FillColor = Color.Transparent;
+            controlBox.HoverState.Parent = controlBox;
+            controlBox.IconColor = Color.Navy;
+            controlBox.Location = new Point(383, 0);
+            controlBox.Name = "controlBox";
+            controlBox.ShadowDecoration.Parent = controlBox;
+            controlBox.Size = new Size(30, 29);
+            controlBox.TabIndex = 3;
 
-            // guna2HtmlLabel1
-            this.guna2HtmlLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Blue;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(343, 351);
-            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(68, 17);
+            //
+            // htmlLabelVersion
+            //
+            htmlLabelVersion.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            htmlLabelVersion.BackColor = Color.Transparent;
+            htmlLabelVersion.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            htmlLabelVersion.ForeColor = Color.Blue;
+            htmlLabelVersion.Location = new Point(343, 351);
+            htmlLabelVersion.Name = "htmlLabelVersion";
+            htmlLabelVersion.Size = new Size(68, 17);
 
-            // label2
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(54, 373);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 15);
+            //
+            // lblVersion
+            //
+            lblVersion.AutoSize = true;
+            lblVersion.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Bold);
+            lblVersion.ForeColor = Color.FromArgb(64, 64, 64);
+            lblVersion.Location = new Point(54, 373);
+            lblVersion.Name = "lblVersion";
+            lblVersion.Size = new Size(87, 15);
 
-            // LBL_IP
-            this.LBL_IP.AutoSize = true;
-            this.LBL_IP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.LBL_IP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.LBL_IP.Location = new System.Drawing.Point(151, 373);
-            this.LBL_IP.Name = "LBL_IP";
-            this.LBL_IP.Size = new System.Drawing.Size(67, 15);
+            //
+            // lblIP
+            //
+            lblIP.AutoSize = true;
+            lblIP.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Bold);
+            lblIP.ForeColor = Color.FromArgb(64, 64, 64);
+            lblIP.Location = new Point(151, 373);
+            lblIP.Name = "lblIP";
+            lblIP.Size = new Size(67, 15);
 
-            // LBL_VRSYN
-            this.LBL_VRSYN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LBL_VRSYN.AutoSize = true;
-            this.LBL_VRSYN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.LBL_VRSYN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.LBL_VRSYN.Location = new System.Drawing.Point(348, 370);
-            this.LBL_VRSYN.Name = "LBL_VRSYN";
-            this.LBL_VRSYN.Size = new System.Drawing.Size(61, 15);
+            //
+            // lblVRSYN
+            //
+            lblVRSYN.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblVRSYN.AutoSize = true;
+            lblVRSYN.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Bold);
+            lblVRSYN.ForeColor = Color.FromArgb(64, 64, 64);
+            lblVRSYN.Location = new Point(348, 370);
+            lblVRSYN.Name = "lblVRSYN";
+            lblVRSYN.Size = new Size(61, 15);
 
-            // lblsube_id
-            this.lblsube_id.AutoSize = true;
-            this.lblsube_id.Location = new System.Drawing.Point(297, 9);
-            this.lblsube_id.Name = "lblsube_id";
-            this.lblsube_id.Size = new System.Drawing.Size(54, 13);
-            this.lblsube_id.TabIndex = 8;
-            this.lblsube_id.Visible = false;
+            //
+            // lblSubeID
+            //
+            lblSubeID.AutoSize = true;
+            lblSubeID.Location = new Point(297, 9);
+            lblSubeID.Name = "lblSubeID";
+            lblSubeID.Size = new Size(54, 13);
+            lblSubeID.TabIndex = 8;
+            lblSubeID.Visible = false;
 
-            // lbltur
-            this.lbltur.AutoSize = true;
-            this.lbltur.Location = new System.Drawing.Point(297, 22);
-            this.lbltur.Name = "lbltur";
-            this.lbltur.Size = new System.Drawing.Size(29, 13);
-            this.lbltur.TabIndex = 9;
-            this.lbltur.Visible = false;
+            //
+            // lblTur
+            //
+            lblTur.AutoSize = true;
+            lblTur.Location = new Point(297, 22);
+            lblTur.Name = "lblTur";
+            lblTur.Size = new Size(29, 13);
+            lblTur.TabIndex = 9;
+            lblTur.Visible = false;
 
-            // lbltramerka
-            this.lbltramerka.AutoSize = true;
-            this.lbltramerka.Location = new System.Drawing.Point(297, 35);
-            this.lbltramerka.Name = "lbltramerka";
-            this.lbltramerka.Size = new System.Drawing.Size(58, 13);
-            this.lbltramerka.TabIndex = 10;
-            this.lbltramerka.Visible = false;
+            //
+            // lblTramerka
+            //
+            lblTramerka.AutoSize = true;
+            lblTramerka.Location = new Point(297, 35);
+            lblTramerka.Name = "lblTramerka";
+            lblTramerka.Size = new Size(58, 13);
+            lblTramerka.TabIndex = 10;
+            lblTramerka.Visible = false;
 
-            // lbltramersifre
-            this.lbltramersifre.AutoSize = true;
-            this.lbltramersifre.Location = new System.Drawing.Point(297, 48);
-            this.lbltramersifre.Name = "lbltramersifre";
-            this.lbltramersifre.Size = new System.Drawing.Size(65, 13);
-            this.lbltramersifre.TabIndex = 11;
-            this.lbltramersifre.Visible = false;
+            //
+            // lblTramerSifre
+            //
+            lblTramerSifre.AutoSize = true;
+            lblTramerSifre.Location = new Point(297, 48);
+            lblTramerSifre.Name = "lblTramerSifre";
+            lblTramerSifre.Size = new Size(65, 13);
+            lblTramerSifre.TabIndex = 11;
+            lblTramerSifre.Visible = false;
 
-            // g2LoginImage
-            this.g2LoginImage.Dock = System.Windows.Forms.DockStyle.Left;
-            this.g2LoginImage.Image = global::Planor.Properties.Resources.login_blue_abstract_small;
-            this.g2LoginImage.Location = new System.Drawing.Point(0, 0);
-            this.g2LoginImage.Name = "g2LoginImage";
-            this.g2LoginImage.ShadowDecoration.Parent = this.g2LoginImage;
-            this.g2LoginImage.Size = new System.Drawing.Size(291, 390);
+            //
+            // pictureBoxBackground
+            //
+            pictureBoxBackground.Dock = DockStyle.Left;
+            pictureBoxBackground.Image = Properties.Resources.login_blue_abstract_small;
+            pictureBoxBackground.Location = new Point(0, 0);
+            pictureBoxBackground.Name = "pictureBoxBackground";
+            pictureBoxBackground.ShadowDecoration.Parent = pictureBoxBackground;
+            pictureBoxBackground.Size = new Size(291, 390);
 
+            //
             // LoginForm
-            this.AcceptButton = this.g2LoginButon;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(248)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(413, 390);
-            this.Controls.Add(this.lbltramersifre);
-            this.Controls.Add(this.lbltramerka);
-            this.Controls.Add(this.lbltur);
-            this.Controls.Add(this.lblsube_id);
-            this.Controls.Add(this.LBL_VRSYN);
-            this.Controls.Add(this.LBL_IP);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.guna2HtmlLabel1);
-            this.Controls.Add(this.guna2ControlBox1);
-            this.Controls.Add(this.guna2Panel1);
-            this.Controls.Add(this.g2LoginImage);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(500, 50);
-            this.Name = "LoginForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.LoginForm_Load);
+            //
+            AcceptButton = btnLogin;
+            AutoScaleDimensions = new SizeF(6F, 13F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(249, 248, 254);
+            ClientSize = new Size(413, 390);
+            Controls.Add(lblTramerSifre);
+            Controls.Add(lblTramerka);
+            Controls.Add(lblTur);
+            Controls.Add(lblSubeID);
+            Controls.Add(lblVRSYN);
+            Controls.Add(lblIP);
+            Controls.Add(lblVersion);
+            Controls.Add(htmlLabelVersion);
+            Controls.Add(controlBox);
+            Controls.Add(panelContainer);
+            Controls.Add(pictureBoxBackground);
+            FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)Properties.Resources.ResourceManager.GetObject("$this.Icon");
+            Location = new Point(500, 50);
+            Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Load += LoginForm_Load;
         }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            // Handle login button click event
+        }
+
+        private void btnLogin_Enter(object sender, EventArgs e)
+        {
+            // Handle login button enter event
+        }
+
+        private void btnLogin_Leave(object sender, EventArgs e)
+        {
+            // Handle login button leave event
+        }
+
+        private void btnLogin_MouseLeave(object sender, EventArgs e)
+        {
+            // Handle login button mouse leave event
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            // Handle form load event
+        }
+
+        #endregion
     }
 }
