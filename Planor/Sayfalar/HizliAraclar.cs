@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Planor.Kalaslar;
 using Planor.Sayfalar;
 using System.Globalization;
+using System.Linq;
 
 namespace Planor.Sayfalar
 {
@@ -23,40 +24,37 @@ namespace Planor.Sayfalar
 
         private void HizliAraclar_Load(object sender, EventArgs e)
         {
-            this.Width = new SistemForm().screens[new SistemForm().ekranno].WorkingArea.Width - ((new SistemForm().screens[new SistemForm().ekranno].WorkingArea.Width) / 8);
-            this.Height = new SistemForm().PanelSlider.Height;
+            this.Width = sistm.screens[sistm.ekranno].WorkingArea.Width - (sistm.screens[sistm.ekranno].WorkingArea.Width / 8);
+            this.Height = sistm.PanelSlider.Height;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            sistm.Trayyy1. ShowBalloonTip(1000, "Bekleyiniz...", "Yeniden deneme için 15 saniye daha bekleyiniz.", ToolTipIcon.Info);
+            try
+            {
+                sistm.Trayyy1.ShowBalloonTip(1000, "Bekleyiniz...", "Yeniden deneme için 15 saniye daha bekleyiniz.", ToolTipIcon.Info);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while showing the balloon tip: {ex.Message}");
+            }
         }
 
         private void PanodanImageBTN_Click(object sender, EventArgs e)
         {
-            Image pp1;
             if (Clipboard.ContainsImage())
             {
-                string kayityolu = Path.Combine(Path.GetTempPath(), $"{DateTime.Now.ToFileTime()}_satis-sozlesmesi_img.png");
-
-                pp1 = Clipboard.GetImage();
                 try
                 {
-                    pp1.Save(kayityolu, System.Drawing.Imaging.ImageFormat.Png);
+                    var image = Clipboard.GetImage();
+                    var tempFilePath = Path.Combine(Path.GetTempPath(), $"{DateTime.Now.ToFileTime()}_satis-sozlesmesi_img.png");
+                    image.Save(tempFilePath, System.Drawing.Imaging.ImageFormat.Png);
+                    PanoImageBox.Image = image;
+                    txt_kayityolu.Text = tempFilePath;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("\"Satış Sözleşmesi\" kaydedilerken hata oluştu, lütfen yeniden deneyiniz.");
-                    MessageBox.Show(ex.ToString());
-                }
-                if (File.Exists(kayityolu))
-                {
-                    PanoImageBox.Image = pp1;
-                    txt_kayityolu.Text = kayityolu;
-                }
-                else
-                {
-                    MessageBox.Show("\"Satış Sözleşmesi\" kaydedilerken hata oluştu, lütfen yeniden deneyiniz.");
+                    MessageBox.Show("An error occurred while saving the image: " + ex.Message);
                 }
             }
             else
@@ -67,34 +65,43 @@ namespace Planor.Sayfalar
 
         private void SatistanIptaliBaslatBTN_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_kayityolu.Text) &&
-                cmb_sirket.SelectedIndex != -1 &&
-                !string.IsNullOrEmpty(txt_policeno.Text) &&
-                !string.IsNullOrEmpty(txt_SatisTarihi.Text) &&
-                !string.IsNullOrEmpty(txt_noter.Text) &&
-                !string.IsNullOrEmpty(txt_YevmiyeNo.Text))
-            {
-                string uzuncumle = $"{txt_kayityolu.Text};" +
-                    $"{cmb_sirket.SelectedItem};" +
-                    $"{txt_policeno.Text};" +
-                    $"{txt_SatisTarihi.Text};" +
-                    $"{txt_noter.Text};" +
-                    $"{txt_YevmiyeNo.Text};";
-
-                string sifrelicumle = gn._Encrypt(uzuncumle, true);
-
-                var ProcessUNCS = new Process();
-                ProcessUNCS.StartInfo.WorkingDirectory = @"C:\Users\Cihangir ÖZDEMİR\Source\Repos\SatistaNiptaLRobotu\SatistaNiptaLRobotu\bin\Debug\net5.0-windows";                
-                ProcessUNCS.StartInfo.FileName = "SatistaNiptaLRobotu.exe";
-                ProcessUNCS.StartInfo.Arguments = sifrelicumle;
-                ProcessUNCS.Start();
-
-            }
-            else
+            if (string.IsNullOrEmpty(txt_kayityolu.Text) ||
+                cmb_sirket.SelectedIndex == -1 ||
+                string.IsNullOrEmpty(txt_policeno.Text) ||
+                string.IsNullOrEmpty(txt_SatisTarihi.Text) ||
+                string.IsNullOrEmpty(txt_noter.Text) ||
+                string.IsNullOrEmpty(txt_YevmiyeNo.Text))
             {
                 MessageBox.Show("Lütfen önce bilgileri eksiksiz doldurunuz...");
+                return;
             }
 
+            var uzuncumle = $"{txt_kayityolu.Text};" +
+                            $"{cmb_sirket.SelectedItem};" +
+                            $"{txt_policeno.Text};" +
+                            $"{txt_SatisTarihi.Text};" +
+                            $"{txt_noter.Text};" +
+                            $"{txt_YevmiyeNo.Text};";
+
+            var sifrelicumle = gn._Encrypt(uzuncumle, true);
+
+            try
+            {
+                var process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        WorkingDirectory = @"C:\Users\Cihangir ÖZDEMİR\Source\Repos\SatistaNiptaLRobotu\SatistaNiptaLRobotu\bin\Debug\net5.0-windows",
+                        FileName = "SatistaNiptaLRobotu.exe",
+                        Arguments = sifrelicumle
+                    }
+                };
+                process.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while starting the process: " + ex.Message);
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -105,12 +112,12 @@ namespace Planor.Sayfalar
         public class ComboBoxItem<T>
         {
             public string Name { get; set; }
-            public T value { get; set; }
+            public T Value { get; set; }
 
-            public ComboBoxItem(string Name, T value)
+            public ComboBoxItem(string name, T value)
             {
-                this.Name = Name;
-                this.value = value;
+                Name = name;
+                Value = value;
             }
 
             public override string ToString()
@@ -126,54 +133,58 @@ namespace Planor.Sayfalar
                 if (double.TryParse(txtesas4.Text, NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out double nValue))
                 {
                     txts4.Text = String.Format("{0:N0}", nValue);
-                    txts0.Text = String.Format("{0:N0}", Math.Truncate(nValue * 3.00));
-                    txts1.Text = String.Format("{0:N0}", Math.Truncate(nValue * 2.35));
-                    txts2.Text = String.Format("{0:N0}", Math.Truncate(nValue * 1.90));
-                    txts3.Text = String.Format("{0:N0}", Math.Truncate(nValue * 1.45));
-                    txts5.Text = String.Format("{0:N0}", Math.Truncate(nValue * 0.90));
-                    txts6.Text = String.Format("{0:N0}", Math.Truncate(nValue * 0.78));
-                    txts7.Text = String.Format("{0:N0}", Math.Truncate(nValue * 0.58));
-                    txts8.Text = String.Format("{0:N0}", Math.Truncate(nValue * 0.50));
+                    SetTextBoxValue(txts0, nValue * 3.00);
+                    SetTextBoxValue(txts1, nValue * 2.35);
+                    SetTextBoxValue(txts2, nValue * 1.90);
+                    SetTextBoxValue(txts3, nValue * 1.45);
+                    SetTextBoxValue(txts5, nValue * 0.90);
+                    SetTextBoxValue(txts6, nValue * 0.78);
+                    SetTextBoxValue(txts7, nValue * 0.58);
+                    SetTextBoxValue(txts8, nValue * 0.50);
 
-                    txt1a4.Text = String.Format("{0:N0}", Math.Truncate(nValue * 1.0475));
-                    txt1a0.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1a4.Text.Replace(".", "")) * 3.00));
-                    txt1a1.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1a4.Text.Replace(".", "")) * 2.35));
-                    txt1a2.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1a4.Text.Replace(".", "")) * 1.90));
-                    txt1a3.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1a4.Text.Replace(".", "")) * 1.45));
-                    txt1a5.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1a4.Text.Replace(".", "")) * 0.90));
-                    txt1a6.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1a4.Text.Replace(".", "")) * 0.78));
-                    txt1a7.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1a4.Text.Replace(".", "")) * 0.58));
-                    txt1a8.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1a4.Text.Replace(".", "")) * 0.50));
+                    var value1a4 = nValue * 1.0475;
+                    SetTextBoxValue(txt1a4, value1a4);
+                    SetTextBoxValue(txt1a0, Convert.ToInt32(value1a4 * 3.00));
+                    SetTextBoxValue(txt1a1, Convert.ToInt32(value1a4 * 2.35));
+                    SetTextBoxValue(txt1a2, Convert.ToInt32(value1a4 * 1.90));
+                    SetTextBoxValue(txt1a3, Convert.ToInt32(value1a4 * 1.45));
+                    SetTextBoxValue(txt1a5, Convert.ToInt32(value1a4 * 0.90));
+                    SetTextBoxValue(txt1a6, Convert.ToInt32(value1a4 * 0.78));
+                    SetTextBoxValue(txt1a7, Convert.ToInt32(value1a4 * 0.58));
+                    SetTextBoxValue(txt1a8, Convert.ToInt32(value1a4 * 0.50));
 
-                    txty4.Text = String.Format("{0:N0}", Math.Truncate(nValue * 1.696));
-                    txty0.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txty4.Text.Replace(".", "")) * 3.00));
-                    txty1.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txty4.Text.Replace(".", "")) * 2.35));
-                    txty2.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txty4.Text.Replace(".", "")) * 1.90));
-                    txty3.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txty4.Text.Replace(".", "")) * 1.45));
-                    txty5.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txty4.Text.Replace(".", "")) * 0.90));
-                    txty6.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txty4.Text.Replace(".", "")) * 0.78));
-                    txty7.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txty4.Text.Replace(".", "")) * 0.58));
-                    txty8.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txty4.Text.Replace(".", "")) * 0.50));
+                    var valuey4 = nValue * 1.696;
+                    SetTextBoxValue(txty4, valuey4);
+                    SetTextBoxValue(txty0, Convert.ToInt32(valuey4 * 3.00));
+                    SetTextBoxValue(txty1, Convert.ToInt32(valuey4 * 2.35));
+                    SetTextBoxValue(txty2, Convert.ToInt32(valuey4 * 1.90));
+                    SetTextBoxValue(txty3, Convert.ToInt32(valuey4 * 1.45));
+                    SetTextBoxValue(txty5, Convert.ToInt32(valuey4 * 0.90));
+                    SetTextBoxValue(txty6, Convert.ToInt32(valuey4 * 0.78));
+                    SetTextBoxValue(txty7, Convert.ToInt32(valuey4 * 0.58));
+                    SetTextBoxValue(txty8, Convert.ToInt32(valuey4 * 0.50));
 
-                    txt1k4.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txty4.Text.Replace(".", "")) * 1.696));
-                    txt1k0.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1k4.Text.Replace(".", "")) * 3.00));
-                    txt1k1.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1k4.Text.Replace(".", "")) * 2.35));
-                    txt1k2.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1k4.Text.Replace(".", "")) * 1.90));
-                    txt1k3.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1k4.Text.Replace(".", "")) * 1.45));
-                    txt1k5.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1k4.Text.Replace(".", "")) * 0.90));
-                    txt1k6.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1k4.Text.Replace(".", "")) * 0.78));
-                    txt1k7.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1k4.Text.Replace(".", "")) * 0.58));
-                    txt1k8.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1k4.Text.Replace(".", "")) * 0.50));
+                    var value1k4 = Convert.ToInt32(valuey4 * 1.696);
+                    SetTextBoxValue(txt1k4, value1k4);
+                    SetTextBoxValue(txt1k0, value1k4 * 3.00);
+                    SetTextBoxValue(txt1k1, value1k4 * 2.35);
+                    SetTextBoxValue(txt1k2, value1k4 * 1.90);
+                    SetTextBoxValue(txt1k3, value1k4 * 1.45);
+                    SetTextBoxValue(txt1k5, value1k4 * 0.90);
+                    SetTextBoxValue(txt1k6, value1k4 * 0.78);
+                    SetTextBoxValue(txt1k7, value1k4 * 0.58);
+                    SetTextBoxValue(txt1k8, value1k4 * 0.50);
 
-                    txt2k4.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt1k4.Text.Replace(".", "")) * 1.696));
-                    txt2k0.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt2k4.Text.Replace(".", "")) * 3.00));
-                    txt2k1.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt2k4.Text.Replace(".", "")) * 2.35));
-                    txt2k2.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt2k4.Text.Replace(".", "")) * 1.90));
-                    txt2k3.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt2k4.Text.Replace(".", "")) * 1.45));
-                    txt2k5.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt2k4.Text.Replace(".", "")) * 0.90));
-                    txt2k6.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt2k4.Text.Replace(".", "")) * 0.78));
-                    txt2k7.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt2k4.Text.Replace(".", "")) * 0.58));
-                    txt2k8.Text = String.Format("{0:N0}", Math.Truncate(Convert.ToInt32(txt2k4.Text.Replace(".", "")) * 0.50));
+                    var value2k4 = Convert.ToInt32(value1k4 * 1.696);
+                    SetTextBoxValue(txt2k4, value2k4);
+                    SetTextBoxValue(txt2k0, value2k4 * 3.00);
+                    SetTextBoxValue(txt2k1, value2k4 * 2.35);
+                    SetTextBoxValue(txt2k2, value2k4 * 1.90);
+                    SetTextBoxValue(txt2k3, value2k4 * 1.45);
+                    SetTextBoxValue(txt2k5, value2k4 * 0.90);
+                    SetTextBoxValue(txt2k6, value2k4 * 0.78);
+                    SetTextBoxValue(txt2k7, value2k4 * 0.58);
+                    SetTextBoxValue(txt2k8, value2k4 * 0.50);
                 }
                 else
                 {
@@ -186,53 +197,21 @@ namespace Planor.Sayfalar
             }
         }
 
+        private void SetTextBoxValue(TextBox textBox, double value)
+        {
+            if (textBox != null)
+            {
+                textBox.Text = String.Format("{0:N0}", value);
+            }
+        }
+
         private void ClearAllTextboxes()
         {
-            txts0.Text = "0";
-            txts1.Text = "0";
-            txts2.Text = "0";
-            txts3.Text = "0";
-            txts4.Text = "0";
-            txts5.Text = "0";
-            txts6.Text = "0";
-            txts7.Text = "0";
-            txts8.Text = "0";
-            txty4.Text = "0";
-            txty0.Text = "0";
-            txty1.Text = "0";
-            txty2.Text = "0";
-            txty3.Text = "0";
-            txty5.Text = "0";
-            txty6.Text = "0";
-            txty7.Text = "0";
-            txty8.Text = "0";
-            txt1k4.Text = "0";
-            txt1k0.Text = "0";
-            txt1k1.Text = "0";
-            txt1k2.Text = "0";
-            txt1k3.Text = "0";
-            txt1k5.Text = "0";
-            txt1k6.Text = "0";
-            txt1k7.Text = "0";
-            txt1k8.Text = "0";
-            txt2k4.Text = "0";
-            txt2k0.Text = "0";
-            txt2k1.Text = "0";
-            txt2k2.Text = "0";
-            txt2k3.Text = "0";
-            txt2k5.Text = "0";
-            txt2k6.Text = "0";
-            txt2k7.Text = "0";
-            txt2k8.Text = "0";
-            txt1a0.Text = "0";
-            txt1a1.Text = "0";
-            txt1a2.Text = "0";
-            txt1a3.Text = "0";
-            txt1a4.Text = "0";
-            txt1a5.Text = "0";
-            txt1a6.Text = "0";
-            txt1a7.Text = "0";
-            txt1a8.Text = "0";
+            var textBoxes = this.Controls.OfType<TextBox>().ToList();
+            foreach (var textBox in textBoxes)
+            {
+                textBox.Text = "0";
+            }
         }
     }
 }
