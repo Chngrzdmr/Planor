@@ -30,17 +30,33 @@ namespace Planor
                 }
                 else
                 {
-                    ShowWindow(GetConsoleWindow(), 0); // hide console window
-                    MessageBox.Show("Program sadece bir defa açılabilir.");
-                }
+                    // Hide console window
+                    var handle = GetConsoleWindow();
+                    ShowWindow(handle, 0);
 
-                mutex.ReleaseMutex();
+                    // Show error message
+                    MessageBox.Show("Program sadece bir defa açılabilir.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // Release mutex
+                    mutex.ReleaseMutex();
+
+                    // Close application
+                    Application.Exit();
+                }
             }
             catch (Exception ex)
             {
-                // handle any exceptions that might occur
+                // Log error
                 Console.WriteLine($"An error occurred: {ex.Message}");
             }
+            finally
+            {
+                // Release mutex
+                mutex.ReleaseMutex();
+            }
         }
+
+        [DllImport("kernel32.dll")]
+        private static extern IntPtr GetConsoleWindow();
     }
 }
