@@ -8,21 +8,37 @@ namespace Planor
 {
     partial class SMSShowerForm
     {
+        // The IContainer components field is used to store the components that are needed for this form.
         private IContainer components = null;
 
+        // The dgvSmsList DataGridView displays the list of SMS messages.
         private DataGridView dgvSmsList;
+
+        // The btnRefresh Button is used to refresh the list of SMS messages.
         private Button btnRefresh;
+
+        // The notifyIcon is used to display an icon in the system tray.
         private NotifyIcon notifyIcon;
+
+        // The contextMenuStrip is used to display a context menu when the user clicks the notifyIcon.
         private ContextMenuStrip contextMenuStrip;
+
+        // The trayRefreshItem ToolStripMenuItem is used to refresh the list of SMS messages from the context menu.
         private ToolStripMenuItem trayRefreshItem;
+
+        // The trayExitItem ToolStripMenuItem is used to close the application from the context menu.
         private ToolStripMenuItem trayExitItem;
+
+        // The lblInfo Label is used to display additional information to the user.
         private Label lblInfo;
 
         public SMSShowerForm()
         {
+            // InitializeComponent is called to create the components required for this form.
             InitializeComponent();
         }
 
+        // The Dispose method is called when the form is closed. It releases the resources used by the form.
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -34,28 +50,23 @@ namespace Planor
 
         #region Windows Form Designer generated code
 
+        // InitializeComponent is called by the constructor to initialize the form's components.
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(components);
-            trayRefreshItem = new System.Windows.Forms.ToolStripMenuItem();
-            trayExitItem = new System.Windows.Forms.ToolStripMenuItem();
 
-            // ...
-
-            // dgvSmsList
-            //
+            // The dgvSmsList DataGridView is configured with various properties.
             dgvSmsList.AllowUserToAddRows = false;
             dgvSmsList.AllowUserToDeleteRows = false;
             dgvSmsList.AllowUserToResizeColumns = false;
             dgvSmsList.AllowUserToResizeRows = false;
+            DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             dgvSmsList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvSmsList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             dgvSmsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSmsList.ColumnHeadersVisible = false;
+            DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -78,34 +89,25 @@ namespace Planor
             dgvSmsList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(dgvSmsList_CellContentClick);
             dgvSmsList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(dgvSmsList_CellDoubleClick);
 
-            // ...
-
-            // contextMenuStrip
-            //
+            // The contextMenuStrip is configured with two ToolStripMenuItems.
+            contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(components);
+            trayRefreshItem = new System.Windows.Forms.ToolStripMenuItem();
+            trayExitItem = new System.Windows.Forms.ToolStripMenuItem();
             contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             trayRefreshItem,
             trayExitItem});
             contextMenuStrip.Name = "contextMenuStrip";
             contextMenuStrip.Size = new System.Drawing.Size(117, 48);
-
-            // ...
-
-            // trayRefreshItem
-            //
             trayRefreshItem.Name = "trayRefreshItem";
             trayRefreshItem.Size = new System.Drawing.Size(116, 22);
             trayRefreshItem.Text = "Güncelle";
             trayRefreshItem.Click += new System.EventHandler(trayRefreshItem_Click);
-
-            // trayExitItem
-            //
             trayExitItem.Name = "trayExitItem";
             trayExitItem.Size = new System.Drawing.Size(116, 22);
             trayExitItem.Text = "Çık";
             trayExitItem.Click += new System.EventHandler(trayExitItem_Click);
 
-            // SMSShowerForm
-            //
+            // The SMSShowerForm is configured with various properties.
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(314, 406);
@@ -122,11 +124,13 @@ namespace Planor
 
         #endregion
 
+        // The trayRefreshItem_Click method is called when the user clicks the trayRefreshItem from the context menu.
         private void trayRefreshItem_Click(object sender, EventArgs e)
         {
             // Handle the tray refresh item click event.
         }
 
+        // The trayExitItem_Click method is called when the user clicks the trayExitItem from the context menu.
         private void trayExitItem_Click(object sender, EventArgs e)
         {
             // Handle the tray exit item click event.
