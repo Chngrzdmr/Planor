@@ -11,9 +11,13 @@ namespace Planor.Sayfalar
 {
     public partial class SubeAyarlari : UserControl
     {
+        // Initialize a new instance of the General class.
         private readonly General _general = new General();
+
+        // Store the MySQL connection string.
         private readonly string _connectionString = _general.MySqlBaglanti;
 
+        // Constructor for the SubeAyarlari user control.
         public SubeAyarlari()
         {
             InitializeComponent();
@@ -25,6 +29,7 @@ namespace Planor.Sayfalar
             LoadData();
         }
 
+        // Event handler for the SubeAyarlari_Load event.
         private void SubeAyarlari_Load(object sender, EventArgs e)
         {
             // Set the size of the user control based on the screen size.
@@ -34,6 +39,7 @@ namespace Planor.Sayfalar
             LoadData();
         }
 
+        // Set the size of the user control based on the screen size.
         private void SetUserControlSize()
         {
             this.Size = new Size(
@@ -41,6 +47,7 @@ namespace Planor.Sayfalar
                 new SistemForm().screens[new SistemForm().ekranno].WorkingArea.Height - 111 - new Yonetici().yoneticiMenuPNL.Height);
         }
 
+        // Load data from the MySQL database into the DataGridView.
         private void LoadData()
         {
             string query = "SELECT id, adi FROM t_bayiler";
@@ -54,6 +61,7 @@ namespace Planor.Sayfalar
                         connection.Open();
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
+                            // Set the DataGridView's data source to a new BindingSource with a new DataTable.
                             dt_bayiler.DataSource = new BindingSource(new DataTable(), null);
                             dt_bayiler.DataSource = reader;
                         }
@@ -65,6 +73,7 @@ namespace Planor.Sayfalar
                 }
             }
 
+            // Auto-resize the DataGridView columns to fit the content.
             dt_bayiler.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
