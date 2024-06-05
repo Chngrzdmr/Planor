@@ -1,11 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Kalaslar;
 
@@ -39,14 +32,14 @@ namespace Planor
                 query += "WHERE Durum = 0 ";
             }
             query += "ORDER BY id DESC LIMIT 10";
-            gn.GridViewGetir(query, dgv_smsler);
+            dgv_smsler.DataSource = gn.DataTableGetir(query);
         }
 
         private void dgv_smsler_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgv_smsler.CurrentCell != null)
             {
-                string message = dgv_smsler.CurrentCell.Value.ToString();
+                string message = dgv_smsler.CurrentRow.Cells["Mesaj"].Value.ToString();
                 Clipboard.SetText(message);
                 this.Close();
             }
