@@ -1,27 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- This is an XML file that defines resources for a .NET application. The root element is 'root'. -->
 <root>
-  <!-- Specify the XML schema version and encoding -->
+  <!-- Specify the XML schema version and encoding. -->
   <xs:schema id="root" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://microsoft.com/schemas/resx" />
+
+  <!-- The 'resheader' element is used to define resource header information. -->
   <resheader name="resmimetype">
+    <!-- The 'value' element contains the value of the resource header. -->
     <value>text/microsoft-resx</value>
   </resheader>
+
   <resheader name="version">
     <value>2.0</value>
   </resheader>
+
   <resheader name="reader">
     <value>System.Resources.ResXResourceReader, System.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <!-- Use an assembly alias to avoid hard-coding the version number -->
+
+  <!-- The 'assembly' element is used to specify an assembly alias. -->
   <assembly alias="System.Windows" name="System.Windows, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <!-- Use ResXFileRef type for referencing files -->
+
+  <!-- The 'data' element is used to define a resource. The 'type' attribute specifies the type of the resource. -->
   <data name="mapfre-logo" type="ResXFileRef">
+    <!-- The 'value' element contains the value of the resource. The 'ResXFileRef' type is used to reference a file. -->
     <value>..\Resources\mapfre-logo.png;System.Drawing.Bitmap, System.Drawing</value>
   </data>
+
   <data name="corpus-logo" type="ResXFileRef">
     <value>..\Resources\corpus-logo.png;System.Drawing.Bitmap, System.Drawing</value>
   </data>
-  <!-- Add other data elements here -->
+
+  <!-- Add other data elements here. -->
 </root>
