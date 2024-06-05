@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,11 +16,35 @@ namespace Planor.Sayfalar
             InitializeComponent();
         }
 
+        public Hakkimizda(Screen screen) : this()
+        {
+            SizeToWorkingArea(screen);
+        }
+
         private void Hakkimizda2_Load(object sender, EventArgs e)
         {
-            //sayfa ölçeklendirme
-            this.Width = new SistemForm().screens[new SistemForm().ekranno].WorkingArea.Width - ((new SistemForm().screens[new SistemForm().ekranno].WorkingArea.Width) / 8);
-            this.Height = new SistemForm().PanelSlider.Height;
+            SizeToWorkingArea(new SystemForm().screens[new SystemForm().ekranno]);
+        }
+
+        private void SizeToWorkingArea(Screen screen)
+        {
+            if (screen == null || screen.WorkingArea.Width == 0 || screen.WorkingArea.Height == 0)
+            {
+                throw new ArgumentException("Invalid screen object.");
+            }
+
+            if (new SystemForm().PanelSlider == null)
+            {
+                throw new NullReferenceException("PanelSlider property of SystemForm is null.");
+            }
+
+            this.Width = CalculateWidth(screen.WorkingArea.Width);
+            this.Height = new SystemForm().PanelSlider.Height;
+        }
+
+        private int CalculateWidth(int workingAreaWidth)
+        {
+            return workingAreaWidth - (workingAreaWidth / 8);
         }
     }
 }
