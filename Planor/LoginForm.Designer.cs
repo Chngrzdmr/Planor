@@ -1,17 +1,9 @@
-﻿
 namespace Planor
 {
     partial class LoginForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,16 +13,9 @@ namespace Planor
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.txt_sifre = new Guna.UI2.WinForms.Guna2TextBox();
             this.g2LoginButon = new Guna.UI2.WinForms.Guna2GradientButton();
@@ -49,13 +34,8 @@ namespace Planor
             this.lbltramerka = new System.Windows.Forms.Label();
             this.lbltramersifre = new System.Windows.Forms.Label();
             this.g2LoginImage = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.g2LoginImage)).BeginInit();
-            this.SuspendLayout();
-            // 
+
             // guna2Panel1
-            // 
-            this.guna2Panel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel1.Controls.Add(this.txt_sifre);
             this.guna2Panel1.Controls.Add(this.g2LoginButon);
             this.guna2Panel1.Controls.Add(this.label1);
@@ -64,10 +44,8 @@ namespace Planor
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.ShadowDecoration.Parent = this.guna2Panel1;
             this.guna2Panel1.Size = new System.Drawing.Size(261, 213);
-            this.guna2Panel1.TabIndex = 2;
-            // 
+
             // txt_sifre
-            // 
             this.txt_sifre.AutoRoundedCorners = true;
             this.txt_sifre.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.txt_sifre.BorderRadius = 18;
@@ -79,11 +57,11 @@ namespace Planor
             this.txt_sifre.DisabledState.Parent = this.txt_sifre;
             this.txt_sifre.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txt_sifre.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.txt_sifre.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_sifre.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(254)))));
             this.txt_sifre.FocusedState.Parent = this.txt_sifre;
             this.txt_sifre.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txt_sifre.ForeColor = System.Drawing.Color.Black;
-            this.txt_sifre.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_sifre.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(254)))));
             this.txt_sifre.HoverState.Parent = this.txt_sifre;
             this.txt_sifre.IconLeft = global::Planor.Properties.Resources.Lock;
             this.txt_sifre.IconLeftSize = new System.Drawing.Size(30, 30);
@@ -97,9 +75,8 @@ namespace Planor
             this.txt_sifre.ShadowDecoration.Parent = this.txt_sifre;
             this.txt_sifre.Size = new System.Drawing.Size(253, 38);
             this.txt_sifre.TabIndex = 2;
-            // 
+
             // g2LoginButon
-            // 
             this.g2LoginButon.AutoRoundedCorners = true;
             this.g2LoginButon.BackColor = System.Drawing.Color.Transparent;
             this.g2LoginButon.BorderRadius = 21;
@@ -127,20 +104,16 @@ namespace Planor
             this.g2LoginButon.Enter += new System.EventHandler(this.g2LoginButon_Enter);
             this.g2LoginButon.Leave += new System.EventHandler(this.g2LoginButon_Leave);
             this.g2LoginButon.MouseLeave += new System.EventHandler(this.g2LoginButon_MouseLeave);
-            // 
+
             // label1
-            // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label1.Location = new System.Drawing.Point(48, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 30);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Giriş Bilgileri";
-            // 
+
             // txt_ka
-            // 
             this.txt_ka.AutoRoundedCorners = true;
             this.txt_ka.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.txt_ka.BorderRadius = 18;
@@ -171,21 +144,17 @@ namespace Planor
             this.txt_ka.Size = new System.Drawing.Size(253, 38);
             this.txt_ka.TabIndex = 1;
             this.txt_ka.TextChanged += new System.EventHandler(this.txt_ka_TextChanged);
-            // 
+
             // guna2Elipse1
-            // 
             this.guna2Elipse1.TargetControl = this;
-            // 
+
             // guna2DragControl1
-            // 
             this.guna2DragControl1.TargetControl = this;
-            // 
+
             // guna2AnimateWindow1
-            // 
             this.guna2AnimateWindow1.AnimationType = Guna.UI2.WinForms.Guna2AnimateWindow.AnimateWindowType.AW_SLIDE;
-            // 
+
             // guna2ControlBox1
-            // 
             this.guna2ControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2ControlBox1.FillColor = System.Drawing.Color.Transparent;
             this.guna2ControlBox1.HoverState.Parent = this.guna2ControlBox1;
@@ -195,9 +164,8 @@ namespace Planor
             this.guna2ControlBox1.ShadowDecoration.Parent = this.guna2ControlBox1;
             this.guna2ControlBox1.Size = new System.Drawing.Size(30, 29);
             this.guna2ControlBox1.TabIndex = 3;
-            // 
+
             // guna2HtmlLabel1
-            // 
             this.guna2HtmlLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -205,34 +173,24 @@ namespace Planor
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(343, 351);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(68, 17);
-            this.guna2HtmlLabel1.TabIndex = 4;
-            this.guna2HtmlLabel1.Text = "C-M Yazılım";
-            this.guna2HtmlLabel1.Click += new System.EventHandler(this.guna2HtmlLabel1_Click);
-            // 
+
             // label2
-            // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(54, 373);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 15);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "IP Adresiniz:";
-            // 
+
             // LBL_IP
-            // 
             this.LBL_IP.AutoSize = true;
             this.LBL_IP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.LBL_IP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.LBL_IP.Location = new System.Drawing.Point(151, 373);
             this.LBL_IP.Name = "LBL_IP";
             this.LBL_IP.Size = new System.Drawing.Size(67, 15);
-            this.LBL_IP.TabIndex = 6;
-            this.LBL_IP.Text = "127.0.0.1";
-            // 
+
             // LBL_VRSYN
-            // 
             this.LBL_VRSYN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LBL_VRSYN.AutoSize = true;
             this.LBL_VRSYN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -240,64 +198,48 @@ namespace Planor
             this.LBL_VRSYN.Location = new System.Drawing.Point(348, 370);
             this.LBL_VRSYN.Name = "LBL_VRSYN";
             this.LBL_VRSYN.Size = new System.Drawing.Size(61, 15);
-            this.LBL_VRSYN.TabIndex = 7;
-            this.LBL_VRSYN.Text = "Versiyon";
-            this.LBL_VRSYN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
+
             // lblsube_id
-            // 
             this.lblsube_id.AutoSize = true;
             this.lblsube_id.Location = new System.Drawing.Point(297, 9);
             this.lblsube_id.Name = "lblsube_id";
             this.lblsube_id.Size = new System.Drawing.Size(54, 13);
             this.lblsube_id.TabIndex = 8;
-            this.lblsube_id.Text = "lblsube_id";
             this.lblsube_id.Visible = false;
-            // 
+
             // lbltur
-            // 
             this.lbltur.AutoSize = true;
             this.lbltur.Location = new System.Drawing.Point(297, 22);
             this.lbltur.Name = "lbltur";
             this.lbltur.Size = new System.Drawing.Size(29, 13);
             this.lbltur.TabIndex = 9;
-            this.lbltur.Text = "lbltur";
             this.lbltur.Visible = false;
-            // 
+
             // lbltramerka
-            // 
             this.lbltramerka.AutoSize = true;
             this.lbltramerka.Location = new System.Drawing.Point(297, 35);
             this.lbltramerka.Name = "lbltramerka";
             this.lbltramerka.Size = new System.Drawing.Size(58, 13);
             this.lbltramerka.TabIndex = 10;
-            this.lbltramerka.Text = "lbltramerka";
             this.lbltramerka.Visible = false;
-            // 
+
             // lbltramersifre
-            // 
             this.lbltramersifre.AutoSize = true;
             this.lbltramersifre.Location = new System.Drawing.Point(297, 48);
             this.lbltramersifre.Name = "lbltramersifre";
             this.lbltramersifre.Size = new System.Drawing.Size(65, 13);
             this.lbltramersifre.TabIndex = 11;
-            this.lbltramersifre.Text = "lbltramersifre";
             this.lbltramersifre.Visible = false;
-            // 
+
             // g2LoginImage
-            // 
             this.g2LoginImage.Dock = System.Windows.Forms.DockStyle.Left;
             this.g2LoginImage.Image = global::Planor.Properties.Resources.login_blue_abstract_small;
             this.g2LoginImage.Location = new System.Drawing.Point(0, 0);
             this.g2LoginImage.Name = "g2LoginImage";
             this.g2LoginImage.ShadowDecoration.Parent = this.g2LoginImage;
             this.g2LoginImage.Size = new System.Drawing.Size(291, 390);
-            this.g2LoginImage.TabIndex = 0;
-            this.g2LoginImage.TabStop = false;
-            this.g2LoginImage.Click += new System.EventHandler(this.g2LoginImage_Click);
-            // 
+
             // LoginForm
-            // 
             this.AcceptButton = this.g2LoginButon;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -320,33 +262,6 @@ namespace Planor
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.LoginForm_Load);
-            this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.g2LoginImage)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
         }
-
-        #endregion
-
-        private Guna.UI2.WinForms.Guna2PictureBox g2LoginImage;
-        private Guna.UI2.WinForms.Guna2TextBox txt_ka;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
-        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
-        private System.Windows.Forms.Label label1;
-        private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
-        private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
-        private Guna.UI2.WinForms.Guna2GradientButton g2LoginButon;
-        private Guna.UI2.WinForms.Guna2TextBox txt_sifre;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private System.Windows.Forms.Label LBL_IP;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label LBL_VRSYN;
-        private System.Windows.Forms.Label lbltur;
-        private System.Windows.Forms.Label lblsube_id;
-        private System.Windows.Forms.Label lbltramerka;
-        private System.Windows.Forms.Label lbltramersifre;
     }
 }
