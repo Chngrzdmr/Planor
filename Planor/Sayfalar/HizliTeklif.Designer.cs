@@ -1,17 +1,14 @@
-﻿
+using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace Planor.Sayfalar
 {
     partial class HizliTeklif
     {
-        /// <summary> 
-        ///Gerekli tasarımcı değişkeni.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
-        /// <summary> 
-        ///Kullanılan tüm kaynakları temizleyin.
-        /// </summary>
-        ///<param name="disposing">yönetilen kaynaklar dispose edilmeliyse doğru; aksi halde yanlış.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,44 +18,30 @@ namespace Planor.Sayfalar
             base.Dispose(disposing);
         }
 
-        #region Bileşen Tasarımcısı üretimi kod
-
-        /// <summary> 
-        /// Tasarımcı desteği için gerekli metot - bu metodun 
-        ///içeriğini kod düzenleyici ile değiştirmeyin.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.label1 = new Label();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(81)))));
-            this.label1.Location = new System.Drawing.Point(0, 0);
+
+            this.label1.Dock = DockStyle.Fill;
+            this.label1.Font = new Font("Segoe UI Semibold", 48F, FontStyle.Bold);
+            this.label1.ForeColor = Color.FromArgb(41, 44, 81);
+            this.label1.Location = new Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1261, 697);
-            this.label1.TabIndex = 0;
+            this.label1.Size = new Size(1200, 500);
             this.label1.Text = "Hızlı Teklifler çok yakında sizlerle...";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // HizliTeklif
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.label1.TextAlign = ContentAlignment.MiddleCenter;
+
+            this.AutoScaleDimensions = new SizeF(6F, 13F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.BackColor = Color.White;
             this.Controls.Add(this.label1);
             this.Name = "HizliTeklif";
-            this.Size = new System.Drawing.Size(1261, 697);
-            this.Load += new System.EventHandler(this.HizliTeklif_Load);
+            this.Size = new Size(1200, 500);
+            this.Load += new EventHandler(HizliTeklif_Load);
             this.ResumeLayout(false);
-
         }
 
-        #endregion
-
-        private System.Windows.Forms.Label label1;
+        private Label label1;
     }
 }
