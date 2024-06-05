@@ -1,53 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="2.4" fontName="MyFont">
 
+  <!-- The GlyphOrder section defines the order of glyphs in the font -->
   <GlyphOrder>
     <GlyphID id="0" name=".notdef"/>
-    <!-- Add more glyphs here -->
+    <!-- Add more glyphs here. The .notdef glyph is a placeholder for undefined characters -->
   </GlyphOrder>
 
+  <!-- The head table contains information about the font's general metrics -->
   <head>
-    <!-- Most of this table will be recalculated by the compiler -->
+    <!-- The tableVersion specifies the version of the head table format -->
     <tableVersion value="1.0"/>
-    <!-- Add other head elements here -->
+    <!-- Add other head elements here, such as fontRevision, checkSumAdjustment, magicNumber, etc. -->
   </head>
 
+  <!-- The hhea table contains information about the font's horizontal header -->
   <hhea>
-    <!-- Most of this table will be recalculated by the compiler -->
+    <!-- The tableVersion specifies the version of the hhea table format -->
     <tableVersion value="1.0"/>
-    <!-- Add other hhea elements here -->
+    <!-- Add other hhea elements here, such as ascent, descent, lineGap, etc. -->
   </hhea>
 
+  <!-- The maxp table contains information about the font's maximum profile -->
   <maxp>
-    <!-- Most of this table will be recalculated by the compiler -->
+    <!-- The tableVersion specifies the version of the maxp table format -->
     <tableVersion value="0x10000"/>
-    <!-- Add other maxp elements here -->
+    <!-- Add other maxp elements here, such as numGlyphs, etc. -->
   </maxp>
 
+  <!-- The hmtx table contains information about the horizontal metrics of each glyph -->
   <hmtx>
     <glyphName name=".notdef" width="1000" lsb="0"/>
-    <!-- Add more glyphs here -->
+    <!-- Add more glyphs here, specifying their horizontal metrics -->
   </hmtx>
 
+  <!-- The cmap table maps character codes to glyph indices -->
   <cmap>
     <tableVersion version="0" format="4" platformID="3" platEncID="0" language="0">
+      <!-- Format 4 uses a subtable for each character code range -->
       <map code="0xf000" name=".notdef"/>
-      <!-- Add more mappings here -->
+      <!-- Add more mappings here, specifying the character codes and corresponding glyph names -->
     </cmap_format_4>
     <cmap_format_6 platformID="1" platEncID="0" language="0">
+      <!-- Format 6 uses a single subtable with a platform and encoding identifier -->
       <map code="0x0" name=".notdef"/>
-      <!-- Add more mappings here -->
+      <!-- Add more mappings here, specifying the character codes and corresponding glyph names -->
     </cmap_format_6>
   </cmap>
 
+  <!-- The loca table contains the offsets to the glyph outlines in the glyf table -->
   <loca>
     <glyph index="0" offset="0"/>
-    <!-- Add more glyphs here -->
+    <!-- Add more glyphs here, specifying their indices and offsets in the glyf table -->
   </loca>
 
+  <!-- The glyf table contains the glyph outlines -->
   <glyf>
     <TTGlyph name=".notdef" xMin="0" yMin="0" xMax="0" yMax="0" width="1000"/>
-    <!-- Add more glyphs here -->
+    <!-- Add more glyphs here, specifying their outlines -->
   </glyf>
 </ttFont>
-
