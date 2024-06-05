@@ -1,32 +1,31 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.ComponentModel;
+using System; // Needed for basic system functionality
+using System.Drawing; // Needed for graphics functionality
+using System.Windows.Forms; // Needed for Windows forms functionality
+using System.ComponentModel; // Needed for component functionality
 
-namespace Planor.Sayfalar
+namespace Planor.Sayfalar // The namespace for this class
 {
-    partial class HizliTeklif
+    partial class HizliTeklif // The name of this class
     {
-        private IContainer components = null;
+        private IContainer components = null; // A container for the components of this form
 
-        public HizliTeklif()
+        public HizliTeklif() // The constructor for this class
         {
-            InitializeComponent();
+            InitializeComponent(); // Initialize the components of this form
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void Dispose(bool disposing) // The Dispose method for this class
         {
-            if (disposing && (components != null))
+            if (disposing && (components != null)) // If disposing is true and components is not null
             {
-                components.Dispose();
+                components.Dispose(); // Dispose the components
             }
             base.Dispose(disposing);
         }
 
-        private void InitializeComponent()
+        private void InitializeComponent() // The InitializeComponent method for this class
         {
-            this.label1 = new Label();
-            this.SuspendLayout();
+            this.label1 = new Label(); // Create a new label component
 
             // Set the Dock property of the label to fill the form
             this.label1.Dock = DockStyle.Fill;
@@ -79,7 +78,7 @@ namespace Planor.Sayfalar
             this.ResumeLayout(false);
         }
 
-        private Label label1;
+        private Label label1; // The label component
 
         private void HizliTeklif_Load(object sender, EventArgs e)
         {
@@ -87,3 +86,4 @@ namespace Planor.Sayfalar
         }
     }
 }
+
