@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- Specify the XML schema version and encoding -->
+  <xs:schema id="root" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://microsoft.com/schemas/resx" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -7,17 +9,19 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mapfre-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mapfre-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <!-- Use an assembly alias to avoid hard-coding the version number -->
+  <assembly alias="System.Windows" name="System.Windows, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <!-- Use ResXFileRef type for referencing files -->
+  <data name="mapfre-logo" type="ResXFileRef">
+    <value>..\Resources\mapfre-logo.png;System.Drawing.Bitmap, System.Drawing</value>
   </data>
-  <data name="corpus-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\corpus-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="corpus-logo" type="ResXFileRef">
+    <value>..\Resources\corpus-logo.png;System.Drawing.Bitmap, System.Drawing</value>
   </data>
   <!-- Add other data elements here -->
 </root>
