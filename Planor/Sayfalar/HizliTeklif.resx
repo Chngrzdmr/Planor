@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root xmlns="http://www.w3.org/2001/XMLSchema"
-      xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
-      xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance"
-      xsd:noNamespaceSchemaLocation="
+<!-- This is an XML schema document that defines the structure of an XML document. 
+The root element is named 'root' and it does not belong to any namespace. 
+The schema defines several attributes for the root element, including 
+'xmlns', 'xmlns:msdata', 'xmlns:xsd', and 'xsd:noNamespaceSchemaLocation'. 
+The 'xsd:noNamespaceSchemaLocation' attribute specifies the location of the 
+XSD schema that defines the structure of this XML document. -->
