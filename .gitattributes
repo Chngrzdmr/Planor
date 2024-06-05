@@ -1,6 +1,8 @@
 # Set default behavior to automatically normalize line endings.
+# This ensures that text files with different line ending conventions (e.g. LF vs CRLF) can be seamlessly interchanged between different operating systems.
 * text=auto
 
 # Set default behavior for command prompt diff.
-# This is needed for earlier builds of msysgit that do not have it on by default
-#
+# This is needed for earlier builds of msysgit that do not have it on by default.
+# When enabled, this option allows for more accurate file comparisons in the Git command prompt.
+diff = diff -p
