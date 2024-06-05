@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Planor.Sayfalar
 {
-    partial class Hakkimizda
+    public partial class Hakkimizda : Form
     {
         #region Private Fields
 
@@ -13,6 +13,11 @@ namespace Planor.Sayfalar
         private Label label1;
 
         #endregion
+
+        public Hakkimizda()
+        {
+            InitializeComponent();
+        }
 
         /// <summary>
         /// Clean up any resources being used.
@@ -60,6 +65,11 @@ namespace Planor.Sayfalar
             this.Size = new Size(1249, 694);
             this.Load += new EventHandler(this.Hakkimizda2_Load);
             this.ResumeLayout(false);
+        }
+
+        private void Hakkimizda2_Load(object sender, EventArgs e)
+        {
+            // Initialize the form when it is loaded.
         }
 
         #endregion
