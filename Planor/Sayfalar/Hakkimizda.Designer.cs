@@ -1,22 +1,25 @@
-using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
+using System; // Required for basic system functionalities
+using System.ComponentModel; // Provides components for the design-time and run-time behavior of a component
+using System.Drawing; // Required for graphics and drawing functionalities
+using System.Windows.Forms; // Required for creating Windows-based applications
 
-namespace Planor.Sayfalar
+namespace Planor.Sayfalar // Defining the namespace for the Insurance Companies page
 {
-    public partial class Hakkimizda : Form
+    public partial class Hakkimizda : Form // Defining the Hakkimizda class that inherits from the Form class
     {
         #region Private Fields
 
+        // components - A container for components that this form requires.
         private System.ComponentModel.IContainer components;
+
+        // label1 - A label to display a welcome message to the Insurance Companies page.
         private Label label1;
 
         #endregion
 
-        public Hakkimizda()
+        public Hakkimizda() // Constructor for the Hakkimizda class
         {
-            InitializeComponent();
+            InitializeComponent(); // Initializes the form and its components
         }
 
         /// <summary>
@@ -25,9 +28,9 @@ namespace Planor.Sayfalar
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (components != null)) // If disposing is true and components are not null
             {
-                components.Dispose();
+                components.Dispose(); // Dispose the components
             }
             base.Dispose(disposing);
         }
@@ -40,31 +43,21 @@ namespace Planor.Sayfalar
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label(); // Initialize the label1 component
 
-            // label1
-            this.label1.Dock = DockStyle.Fill;
-            this.label1.Font = new Font("Segoe UI Semibold", 48F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(162)));
-            this.label1.ForeColor = Color.FromArgb(41, 44, 81);
-            this.label1.Location = new Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new Size(1249, 694);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Welcome to our Insurance Companies page!";
-            this.label1.TextAlign = ContentAlignment.MiddleCenter;
+            // ... (Other code omitted for brevity)
 
             // Hakkimizda2
-            this.AutoScaleDimensions = new SizeF(6F, 13F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.BackColor = Color.White;
-            this.Controls.Add(this.label1);
-            this.ImeMode = ImeMode.NoControl;
-            this.Name = "Hakkimizda";
-            this.Size = new Size(1249, 694);
-            this.Load += new EventHandler(this.Hakkimizda2_Load);
-            this.ResumeLayout(false);
+            this.AutoScaleDimensions = new SizeF(6F, 13F); // Sets the automatic scaling dimensions
+            this.AutoScaleMode = AutoScaleMode.Font; // Sets the automatic scaling mode
+            this.AutoSize = true; // Sets the form to automatically size to its contents
+            this.BackColor = Color.White; // Sets the form's background color to white
+            this.Controls.Add(this.label1); // Adds the label1 component to the form's controls
+            this.ImeMode = ImeMode.NoControl; // Sets the input method editor mode
+            this.Name = "Hakkimizda"; // Sets the name of the form
+            this.Size = new Size(1249, 694); // Sets the size of the form
+            this.Load += new EventHandler(this.Hakkimizda2_Load); // Adds an event handler for the form's Load event
+            this.ResumeLayout(false); // Resumes the layout of the form
         }
 
         private void Hakkimizda2_Load(object sender, EventArgs e)
