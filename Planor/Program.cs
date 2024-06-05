@@ -11,6 +11,7 @@ namespace Planor
     {
         /// <summary>
         /// Uygulamanın ana girdi noktası.
+        /// The main entry point of the application.
         /// </summary>
         private static Mutex mutex = new Mutex(true, "{8F6F0AC4-B9A1-45fd-A8CF-72F04E6BDE8F}");
 
@@ -24,8 +25,13 @@ namespace Planor
             {
                 if (mutex.WaitOne(TimeSpan.Zero, true))
                 {
+                    // Enable visual styles for the application
                     Application.EnableVisualStyles();
+
+                    // Set the default rendering for text to be compatible with high-DPI mode
                     Application.SetCompatibleTextRenderingDefault(false);
+
+                    // Run the LoginForm
                     Application.Run(new LoginForm());
                 }
                 else
@@ -60,3 +66,4 @@ namespace Planor
         private static extern IntPtr GetConsoleWindow();
     }
 }
+
