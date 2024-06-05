@@ -25,10 +25,10 @@ namespace Planor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute(false)]
         public bool AyniPencere {
             get {
-                return ((bool)(this["AyniPencere"])) ?? false;
+                return (bool)(this["AyniPencere"]);
             }
             set {
                 this["AyniPencere"] = value;
@@ -37,10 +37,10 @@ namespace Planor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute(false)]
         public bool SagTuslaFarkliPencere {
             get {
-                return ((bool)(this["SagTuslaFarkliPencere"])) ?? false;
+                return (bool)(this["SagTuslaFarkliPencere"]);
             }
             set {
                 this["SagTuslaFarkliPencere"] = value;
@@ -49,8 +49,14 @@ namespace Planor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute(false)]
         public bool Motitor2de {
             get {
-                return ((bool)(this["Motitor2de"])) ?? false;
-
+                return (bool)(this["Motitor2de"]);
+            }
+            set {
+                this["Motitor2de"] = value;
+            }
+        }
+    }
+}
