@@ -1,10 +1,16 @@
+<!-- This is an XML file that represents a resource (resx) file in a .NET application. -->
+
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- The root element contains a schema definition and the actual data. -->
   <xsd:schema id="root" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!-- Importing the XML namespace. -->
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <!-- Defining the root element with a complex type and a choice of three possible elements. -->
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
+          <!-- The metadata element has a complex type with a sequence of one value element. -->
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
@@ -14,6 +20,7 @@
               <xsd:attribute name="type" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
+          <!-- The data element has a complex type with a sequence of two elements: value and comment. -->
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
@@ -24,6 +31,7 @@
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
             </xsd:complexType>
           </xsd:element>
+          <!-- The resheader element has a complex type with a sequence of one value element. -->
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
@@ -36,6 +44,8 @@
       </xsd:complexType>
     </xsd:element>
   </xsd:schema>
+  
+  <!-- The following resheader elements define metadata for the resource file. -->
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -48,9 +58,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  
+  <!-- The metadata element defines a point value for contextMenuStrip1.TrayLocation. -->
   <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>9, 2</value>
   </metadata>
+  
+  <!-- The metadata element defines an integer value for $this.TrayHeight. -->
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>
