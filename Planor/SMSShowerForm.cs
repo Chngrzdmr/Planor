@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,44 +7,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Kalaslar;
 
 namespace Planor
 {
     public partial class SMSShowerForm : Form
     {
-
-        Kalaslar.General gn = new Kalaslar.General();
+        General gn = new General();
 
         public SMSShowerForm()
         {
             InitializeComponent();
-            gn.grid_view_getir(" SirketAdi,Mesaj,Tarih from GelenMesaj order by id desc limit 10", dgv_smsler);
+            LoadSmsMessages();
         }
 
         private void SMSShowerForm_Enter(object sender, EventArgs e)
         {
-            //gn.grid_view_getir(" * from GelenMesaj order by id asc", dgv_smsler);
-
+            LoadSmsMessages();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            gn.grid_view_getir(" SirketAdi,Mesaj,Tarih from GelenMesaj where Durum = 0 order by id desc limit 10", dgv_smsler);
+            LoadSmsMessages(true);
+        }
+
+        private void LoadSmsMessages(bool isUnreadOnly = false)
+        {
+            string query = "SELECT SirketAdi, Mesaj, Tarih FROM GelenMesaj ";
+            if (isUnreadOnly)
+            {
+                query += "WHERE Durum = 0 ";
+            }
+            query += "ORDER BY id DESC LIMIT 10";
+            gn.GridViewGetir(query, dgv_smsler);
         }
 
         private void dgv_smsler_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string msg = String.Format("Row: {0}, Column: {1}", dgv_smsler.CurrentCell.RowIndex, dgv_smsler.CurrentCell.ColumnIndex);
-            //MessageBox.Show(msg, "Current Cell");
-            //MessageBox.Show(dgv_smsler.CurrentCell.Value.ToString());
-            //Trayyysms.ShowBalloonTip(700, "Şifre Panoya Kopyalandı", dgv_smsler.CurrentCell.Value.ToString(), ToolTipIcon.Info);
-            Clipboard.SetText(dgv_smsler.CurrentCell.Value.ToString());
-            this.Close();
+            if (dgv_smsler.CurrentCell != null)
+            {
+                string message = dgv_smsler.CurrentCell.Value.ToString();
+                Clipboard.SetText(message);
+                this.Close();
+            }
         }
 
         private void dgv_smsler_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
         }
     }
 }
