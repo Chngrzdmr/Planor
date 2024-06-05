@@ -9,14 +9,14 @@ namespace Planor.Sayfalar
 {
     public partial class KullaniciYonetimi : UserControl, IDisposable
     {
-        private General gn;
-        private SistemForm ssfr;
+        private General _gn;
+        private SistemForm _ssfr;
 
         public KullaniciYonetimi()
         {
             InitializeComponent();
-            gn = new General();
-            ssfr = new SistemForm();
+            _gn = new General();
+            _ssfr = new SistemForm();
         }
 
         private void KullaniciYonetimi_Load(object sender, EventArgs e)
@@ -27,13 +27,13 @@ namespace Planor.Sayfalar
             SubeGetir();
             YetkiGetir();
             LblMaxSayi.Text = "999";
-            LblSuankiSayi.Text = gn.adet_getir("t_kullanicilar", "id", "").ToString();
+            LblSuankiSayi.Text = _gn.adet_getir("t_kullanicilar", "id", "").ToString();
         }
 
         private void SetFormSize()
         {
-            this.Width = ssfr.screens[ssfr.ekranno].WorkingArea.Width - ((ssfr.screens[ssfr.ekranno].WorkingArea.Width) / 8);
-            this.Height = ssfr.screens[ssfr.ekranno].WorkingArea.Height - 111 - new Yonetici().yoneticiMenuPNL.Height;
+            this.Width = _ssfr.screens[_ssfr.ekranno].WorkingArea.Width - (_ssfr.screens[_ssfr.ekranno].WorkingArea.Width / 8);
+            this.Height = _ssfr.screens[_ssfr.ekranno].WorkingArea.Height - 111 - new Yonetici().yoneticiMenuPNL.Height;
         }
 
         private void KullanicilariGetir()
@@ -41,7 +41,7 @@ namespace Planor.Sayfalar
             GwKullanicilar.AllowUserToAddRows = false;
             GwKullanicilar.AutoGenerateColumns = true;
 
-            gn.grid_view_getir(" t_kullanicilar.id AS ID, t_kullanicilar.adi AS KullaniciAdi, t_bayiler.adi AS Bayi_Adi FROM t_kullanicilar INNER JOIN t_bayiler ON t_bayiler.id = t_kullanicilar.bayi order by t_kullanicilar.adi asc ", GwKullanicilar);
+            _gn.grid_view_getir(" t_kullanicilar.id AS ID, t_kullanicilar.adi AS KullaniciAdi, t_bayiler.adi AS Bayi_Adi FROM t_kullanicilar INNER JOIN t_bayiler ON t_bayiler.id = t_kullanicilar.bayi order by t_kullanicilar.adi asc ", GwKullanicilar);
             GwKullanicilar.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             SetGridViewColumns();
@@ -57,7 +57,7 @@ namespace Planor.Sayfalar
 
         private void kullanici_sayilarini_getir()
         {
-            lbl_aktif_sayi.Text = gn.adet_getir("t_kullanicilar", "id", "").ToString();
+            lbl_aktif_sayi.Text = _gn.adet_getir("t_kullanicilar", "id", "").ToString();
             lbl_max_sayi.Text = "999";
         }
 
@@ -66,7 +66,7 @@ namespace Planor.Sayfalar
             dgw_sirket_listesi.AllowUserToAddRows = false;
             dgw_sirket_listesi.AutoGenerateColumns = true;
 
-            gn.grid_view_getir(" id,adi from t_sirketler order by adi asc", dgw_sirket_listesi);
+            _gn.grid_view_getir(" id,adi from t_sirketler order by adi asc", dgw_sirket_listesi);
             dgw_sirket_listesi.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             SetSirketListeColumns();
@@ -96,7 +96,7 @@ namespace Planor.Sayfalar
             }
             catch (Exception ex)
             {
-                gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Kullanıcı Silme İşlemi Yapılırken", ex.Message);
+                _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Kullanıcı Silme İşlemi Yapılırken", ex.Message);
             }
         }
 
@@ -104,8 +104,8 @@ namespace Planor.Sayfalar
         {
             string deger = GwKullanicilar.CurrentRow.Cells[0].Value.ToString();
 
-            string Sonuc1 = gn.db_sil_deger("t_kullanici_sirketler", deger, "KullaniciID");
-            string sonuc = gn.db_sil("t_kullanicilar", deger);
+            string Sonuc1 = _gn.db_sil_deger("t_kullanici_sirketler", deger, "KullaniciID");
+            string sonuc = _gn.db_sil("t_kullanicilar", deger);
 
             if (sonuc != "işlem tamamlandı")
             {
@@ -126,7 +126,7 @@ namespace Planor.Sayfalar
             }
             catch (Exception ex)
             {
-                gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Kullanıcı Tablosuna Click Yapılırken", ex.Message);
+                _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Kullanıcı Tablosuna Click Yapılırken", ex.Message);
             }
         }
 
@@ -135,7 +135,7 @@ namespace Planor.Sayfalar
             RgKullaniciSirketler.AllowUserToAddRows = false;
             RgKullaniciSirketler.AutoGenerateColumns = true;
 
-            gn.grid_view_getir($" id,Adi from t_kullanici_sirketler where KullaniciID='{KullaniciID}' order by Adi asc", RgKullaniciSirketler);
+            _gn.grid_view_getir($" id,Adi from t_kullanici_sirketler where KullaniciID='{KullaniciID}' order by Adi asc", RgKullaniciSirketler);
             RgKullaniciSirketler.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             SetSirketKullaniciColumns();
@@ -165,7 +165,7 @@ namespace Planor.Sayfalar
             }
             catch (Exception ex)
             {
-                gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Kullanıcı Tablosuna Çift Click Yapılırken", ex.Message);
+                _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Kullanıcı Tablosuna Çift Click Yapılırken", ex.Message);
             }
             Temizle();
         }
@@ -174,7 +174,7 @@ namespace Planor.Sayfalar
         {
             string KullaniciID = LblKullaniciID.Text;
 
-            using (MySqlConnection con = new MySqlConnection(gn.MySqlBaglanti))
+            using (MySqlConnection con = new MySqlConnection(_gn.MySqlBaglanti))
             {
                 using (MySqlCommand com = new MySqlCommand(@"Select * from t_kullanicilar where id = @KullaniciID", con))
                 {
@@ -210,7 +210,7 @@ namespace Planor.Sayfalar
                     }
                     catch (Exception ex)
                     {
-                        gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Kullanıcı bilgileri DB den çekilirken", ex.Message);
+                        _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Kullanıcı bilgileri DB den çekilirken", ex.Message);
                     }
                 }
             }
@@ -218,11 +218,11 @@ namespace Planor.Sayfalar
 
         private void sirketlere_ekle(string kullanici_id, string sirket_id)
         {
-            string adi = gn.en_son_kaydi_getir("t_sirketler", "adi", $"where id='{sirket_id}'");
+            string adi = _gn.en_son_kaydi_getir("t_sirketler", "adi", $"where id='{sirket_id}'");
             List<string> TabloAdlari = new List<string> { "SirketID", "KullaniciID", "Adi" };
             ArrayList veriler = new ArrayList { sirket_id, kullanici_id, adi };
 
-            string sonuc = gn.db_kaydet(TabloAdlari, "t_kullanici_sirketler", veriler);
+            string sonuc = _gn.db_kaydet(TabloAdlari, "t_kullanici_sirketler", veriler);
 
             if (sonuc != "islem_tamam")
             {
@@ -247,7 +247,7 @@ namespace Planor.Sayfalar
             }
             catch (Exception ex)
             {
-                gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Şirket ekleme yapılırken", ex.Message);
+                _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Şirket ekleme yapılırken", ex.Message);
             }
         }
 
@@ -259,7 +259,7 @@ namespace Planor.Sayfalar
                 {
                     string deger = RgKullaniciSirketler.CurrentRow.Cells[0].Value.ToString();
 
-                    string sonuc = gn.db_sil("t_kullanici_sirketler", deger);
+                    string sonuc = _gn.db_sil("t_kullanici_sirketler", deger);
 
                     if (sonuc != "işlem tamamlandı")
                     {
@@ -272,7 +272,7 @@ namespace Planor.Sayfalar
             }
             catch (Exception ex)
             {
-                gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Şirket Sil Yapılırken", ex.Message);
+                _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Şirket Sil Yapılırken", ex.Message);
             }
         }
 
@@ -283,11 +283,11 @@ namespace Planor.Sayfalar
 
             try
             {
-                gn.db_kaydet(TabloAdlari, "t_kullanici_sirketler", veriler);
+                _gn.db_kaydet(TabloAdlari, "t_kullanici_sirketler", veriler);
             }
             catch (Exception ex)
             {
-                gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Toplu Şirket Ekleme yaparken", ex.Message);
+                _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Toplu Şirket Ekleme yaparken", ex.Message);
                 MessageBox.Show("Bir Hata Oluştu: " + ex.Message);
             }
         }
@@ -295,11 +295,11 @@ namespace Planor.Sayfalar
         private void BtnButunKullanicilaraEkle_Click(object sender, EventArgs e)
         {
             string sirket_id = dgw_sirket_listesi.CurrentRow.Cells[0].Value.ToString();
-            string adi = gn.en_son_kaydi_getir("t_sirketler", "adi", $"where id='{sirket_id}'");
+            string adi = _gn.en_son_kaydi_getir("t_sirketler", "adi", $"where id='{sirket_id}'");
 
             try
             {
-                using (MySqlConnection con = new MySqlConnection(gn.MySqlBaglanti))
+                using (MySqlConnection con = new MySqlConnection(_gn.MySqlBaglanti))
                 {
                     using (MySqlCommand com = new MySqlCommand("Select id from t_kullanicilar order by id asc", con))
                     {
@@ -319,7 +319,7 @@ namespace Planor.Sayfalar
             }
             catch (Exception ex)
             {
-                gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Bir şirket bütün kullanıcılara eklenirken", ex.Message);
+                _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Bir şirket bütün kullanıcılara eklenirken", ex.Message);
             }
         }
 
@@ -327,11 +327,11 @@ namespace Planor.Sayfalar
         {
             try
             {
-                gn.db_sil("t_kullanici_sirketler", id);
+                _gn.db_sil("t_kullanici_sirketler", id);
             }
             catch (Exception ex)
             {
-                gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Bütün şirketleri silmek için işlemler yapılırken", ex.Message);
+                _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Bütün şirketleri silmek için işlemler yapılırken", ex.Message);
                 MessageBox.Show("Bir Hata Oluştu: " + ex.Message);
             }
         }
@@ -342,7 +342,7 @@ namespace Planor.Sayfalar
 
             try
             {
-                using (MySqlConnection con = new MySqlConnection(gn.MySqlBaglanti))
+                using (MySqlConnection con = new MySqlConnection(_gn.MySqlBaglanti))
                 {
                     using (MySqlCommand com = new MySqlCommand($"Delete from t_kullanici_sirketler where SirketID='{sirket_id}'", con))
                     {
@@ -355,7 +355,7 @@ namespace Planor.Sayfalar
             }
             catch (Exception ex)
             {
-                gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Bir şirket bütün kullanıcılardan silinirken", ex.Message);
+                _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Bir şirket bütün kullanıcılardan silinirken", ex.Message);
             }
         }
 
@@ -382,7 +382,7 @@ namespace Planor.Sayfalar
             }
             catch (Exception ex)
             {
-                gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Kullanıcıya bir şirket eklenirken", ex.Message);
+                _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Kullanıcıya bir şirket eklenirken", ex.Message);
                 MessageBox.Show("Kullanıcı veya Şirket Seçiniz");
             }
         }
@@ -393,7 +393,7 @@ namespace Planor.Sayfalar
             {
                 if (LblKullaniciID.Text != "")
                 {
-                    using (MySqlConnection con = new MySqlConnection(gn.MySqlBaglanti))
+                    using (MySqlConnection con = new MySqlConnection(_gn.MySqlBaglanti))
                     {
                         using (MySqlCommand com = new MySqlCommand("Delete from t_kullanici_sirketler where KullaniciID=@KullaniciID", con))
                         {
@@ -411,7 +411,7 @@ namespace Planor.Sayfalar
             }
             catch (Exception ex)
             {
-                gn.LocalLoglaAsync(ssfr.isimLBL.Text, "Bütün şirketleri silmek için işlemler yapılırken", ex.Message);
+                _gn.LocalLoglaAsync(_ssfr.isimLBL.Text, "Bütün şirketleri silmek için işlemler yapılırken", ex.Message);
                 MessageBox.Show("Kullanıcı veya Şirket Seçiniz");
             }
 
@@ -421,12 +421,12 @@ namespace Planor.Sayfalar
 
         private void SubeGetir()
         {
-            gn.combo_box_veri_getir(cmb_sube, " * from t_bayiler order by adi asc", "adi", "id");
+            _gn.combo_box_veri_getir(cmb_sube, " * from t_bayiler order by adi asc", "adi", "id");
         }
 
         private void YetkiGetir()
         {
-            gn.combo_box_veri_getir(cmb_tur, " * from t_tur order by adi asc", "adi", "id");
+            _gn.combo_box_veri_getir(cmb_tur, " * from t_tur order by adi asc", "adi", "id");
         }
 
         private void Btn_KullaniciKaydet_Click(object sender, EventArgs e)
@@ -438,7 +438,7 @@ namespace Planor.Sayfalar
 
                 if (ToplamKullanici >= KullaniciSayisi)
                 {
-                    string kullanici_adi = gn.en_son_kaydi_getir("t_kullanicilar", "adi", $"where adi='{txt_kullanici_adi.Text}'");
+                    string kullanici_adi = _gn.en_son_kaydi_getir("t_kullanicilar", "adi", $"where adi='{txt_kullanici_adi.Text}'");
 
                     if (string.IsNullOrEmpty(kullanici_adi))
                     {
@@ -478,7 +478,7 @@ namespace Planor.Sayfalar
                 veriler.Add("1");
             }
 
-            gn.db_kaydet(TabloAdlari, "t_kullanicilar", veriler, "id", LblKullaniciID.Text);
+            _gn.db_kaydet(TabloAdlari, "t_kullanicilar", veriler, "id", LblKullaniciID.Text);
         }
 
         public void Temizle()
@@ -534,8 +534,8 @@ namespace Planor.Sayfalar
 
         public void Dispose()
         {
-            gn?.Dispose();
-            ssfr?.Dispose();
+            _gn?.Dispose();
+            _ssfr?.Dispose();
             GC.SuppressFinalize(this);
         }
     }
