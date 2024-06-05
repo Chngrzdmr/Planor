@@ -11,6 +11,12 @@ namespace Planor.Sayfalar
     public partial class Ayarlar : UserControl
     {
         General gn = new General();
+        private const string CONNECTION_STRING = "YourConnectionString";
+        private const string SELECT_QUERY = @"Select * from t_kullanicilar where id = @id";
+        private const string UPDATE_QUERY = "UPDATE t_kullanicilar SET {0} WHERE id = @id";
+        private const string INSERT_QUERY = "INSERT INTO t_kullanici_sifre (KullaniciID, SonDegistirmeTarihi) VALUES (@id, @tarih)";
+        private const string DELETE_QUERY = "DELETE FROM t_kullanici_sifre WHERE KullaniciID = @id";
+
         public Ayarlar()
         {
             InitializeComponent();
@@ -45,9 +51,9 @@ namespace Planor.Sayfalar
 
         private void LoadSettings()
         {
-            if (ConfigurationManager.AppSettings.Get("AyniPencere") == "1") ayar1.Checked = true;
-            if (ConfigurationManager.AppSettings.Get("SagTuslaFarkliPencere") == "1") ayar2.Checked = true;
-            if (ConfigurationManager.AppSettings.Get("Motitor2de") == "1") ayar3.Checked = true;
+            ayar1.Checked = ConfigurationManager.AppSettings.Get("AyniPencere") == "1";
+            ayar2.Checked = ConfigurationManager.AppSettings.Get("SagTuslaFarkliPencere") == "1";
+            ayar3.Checked = ConfigurationManager.AppSettings.Get("Motitor2de") == "1";
         }
 
         private void SaveSettings()
@@ -67,9 +73,9 @@ namespace Planor.Sayfalar
 
         private void TramerGetir()
         {
-            using (MySqlConnection con = new MySqlConnection(gn.MySqlBaglanti))
+            using (MySqlConnection con = new MySqlConnection(CONNECTION_STRING))
             {
-                MySqlCommand com = new MySqlCommand(@"Select * from t_kullanicilar where id = @id", con);
+                MySqlCommand com = new MySqlCommand(SELECT_QUERY, con);
                 com.Parameters.AddWithValue("@id", ID_Label.Text);
 
                 try
@@ -128,7 +134,7 @@ namespace Planor.Sayfalar
 
         private void ProgramSifresiDegistirBTN_Click(object sender, EventArgs e)
         {
-            if (txt_mevcut_sifre.Text == "")
+            if (string.IsNullOrEmpty(txt_mevcut_sifre.Text))
             {
                 MessageBox.Show("Lütfen Eski Şifrenizi Giriniz");
                 return;
@@ -140,7 +146,7 @@ namespace Planor.Sayfalar
                 return;
             }
 
-            string sifre = gn.en_son_kaydi_getir("t_kullanicilar", "sifre", "where id='" + ID_Label.Text + "'");
+            string sifre = gn.en_son_kaydi_getir("t_kullanicilar", "sifre", $"where id='{ID_Label.Text}'");
             if (sifre != txt_mevcut_sifre.Text)
             {
                 MessageBox.Show("Şifreniz yanlış");
@@ -153,6 +159,7 @@ namespace Planor.Sayfalar
                 return;
             }
 
+            string updateQuery = string.Format(UPDATE_QUERY, "sifre='" + txt_yeni_sifre.Text + "'");
             List<string> TabloAdlari = new List<string>();
             TabloAdlari.Add("sifre");
             ArrayList veriler = new ArrayList();
