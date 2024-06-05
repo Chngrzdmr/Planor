@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System;
 using System.Windows.Forms;
 
 namespace Planor.Sayfalar
@@ -18,8 +12,9 @@ namespace Planor.Sayfalar
 
         private void HizliTeklif_Load(object sender, EventArgs e)
         {
-            //sayfa ölçeklendirme
-            this.Width = new SistemForm().screens[new SistemForm().ekranno].WorkingArea.Width - ((new SistemForm().screens[new SistemForm().ekranno].WorkingArea.Width) / 8);
+            // Get the screen dimensions
+            var screen = Screen.FromControl(this);
+            this.Width = screen.WorkingArea.Width - (screen.WorkingArea.Width / 8);
             this.Height = new SistemForm().PanelSlider.Height;
         }
     }
